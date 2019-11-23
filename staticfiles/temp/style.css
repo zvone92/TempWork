@@ -1,0 +1,18 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Lucida Casual', 'Comic Sans MS';
+
+}
+
+.navbar-img {
+  width: 35px;
+  height: 40px;
+  float: left;
+  background-size: auto 100%;
+  margin-top: -5px;
+  margin-right: 5px;
+}

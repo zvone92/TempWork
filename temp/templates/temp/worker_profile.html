@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br/>
+{% if request.user.profile.image %}
+<img src="{{ profile.image.url }}" height=100 width=100 class="d-inline-block alighn-top" />
+{% else %}
+<img src="/media/images/default-avatar.png" alt="" class="navbar-img">
+{% endif %}
+
+<br/>
+<br/>
+<p > {{ profile.user }} </p>
+
+<br/>
+<h5>This is your ad:</h5>
+<br/>
+{% if worker %}
+<h3>{{ worker.name }}</h3>
+<p > {{ worker.skill }} </p>
+<p > {{ worker.total_medals}} medals </p>
+{% else %}
+<a href="{% url 'create_worker' %}">  Create your worker ad and get job fast!</a>
+{% endif %}
+<h5 style="background-color: yellow;" class="btn btn-outline-success">Edit</h5>
+{% endblock %}

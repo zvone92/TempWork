@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+  {% for worker in workers %}
+
+  <div class="col-md-6">
+    <br>
+    <div class="img-thumbnail">
+
+      <img src="{{ worker.image.url }}"  height=100 width=100 class="d-inline-block alighn-top">
+      <br>
+
+      <br>
+      <a href="{{ worker.get_absolute_url }}">{{ worker.name }} </a><small style="float: right"> {{ worker.created }}</small>
+      <h2> {{ worker.skill }} </h2>
+      <br>
+      <h5> {{ worker.dob }} </h5>
+      <p > {{ worker.total_medals}} medals </p>
+
+    </div>
+    <br>
+  </div>
+  {% empty %}
+  <div class="container-fluid">
+    <h3>No workers found by "{{ request.GET.q }}"</h3>
+  </div>
+
+
+
+  {% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-md-6">
+  <br>
+  <div class="img-thumbnail">
+
+    <img src="{{ worker.image.url }}"  height=100 width=100 class="d-inline-block alighn-top">
+    <br>
+
+    <br>
+    <a href="{{ worker.get_absolute_url }}">{{ worker.name }} </a><small style="float: right"> {{ worker.created }}</small>
+    <h2> {{ worker.skill }} </h2>
+    <br>
+    <h5> {{ worker.dob }} </h5>
+    <p > {{ worker.total_medals}} medals </p>
+
+  </div>
+  <br>
+</div>
+
+{% endblock %}
+
+    
