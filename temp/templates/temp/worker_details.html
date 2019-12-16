@@ -5,9 +5,11 @@
 <div class="col-md-6">
   <br>
   <div class="img-thumbnail">
-
-    <img src="{{ worker.image.url }}"  height=100 width=100 class="d-inline-block alighn-top">
-    <br>
+    {% if worker.image %}
+    <img src="{{ worker.image.url }}" height=100 width=100 class="d-inline-block alighn-top" />
+    {% else %}
+    <img src="/media/images/default-avatar.png" alt="" class="navbar-img">
+    {% endif %}
 
     <br>
     <a href="{{ worker.get_absolute_url }}">{{ worker.name }} </a><small style="float: right"> {{ worker.created }}</small>
@@ -21,5 +23,3 @@
 </div>
 
 {% endblock %}
-
-    

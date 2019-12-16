@@ -10,7 +10,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('temp/', include('temp.urls')),
-    path('users/', include('users.urls'))
+    path('users/', include('users.urls')),
+    path('messaging/', include('messaging.urls'))
 
 ]
 

@@ -5,4 +5,4 @@ class WorkerCreateForm(forms.ModelForm):
 
     class Meta:
         model = Worker
-        fields = ['name', 'dob', 'skill', 'details', 'status']
+        fields = ['name', 'dob', 'image', 'skill', 'details', 'status']

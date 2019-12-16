@@ -3,7 +3,7 @@
 {% block content %}
 
 <br/>
-{% if request.user.profile.image %}
+{% if profile.image %}
 <img src="{{ profile.image.url }}" height=100 width=100 class="d-inline-block alighn-top" />
 {% else %}
 <img src="/media/images/default-avatar.png" alt="" class="navbar-img">

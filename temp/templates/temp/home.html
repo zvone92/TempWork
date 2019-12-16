@@ -8,8 +8,11 @@
   <div class="col-md-6">
     <br>
     <div class="img-thumbnail">
-
-      <img src="{{ worker.image.url }}"  height=100 width=100 class="d-inline-block alighn-top">
+     {% if worker.image %}
+     <img src="{{ worker.image.url }}"  height=100 width=100 class="d-inline-block alighn-top">
+     {% else %}
+     <img src="/media/images/default-avatar.png" alt="" height=100 width=100 class="d-inline-block alighn-top">
+     {% endif %}
       <br>
 
       <br>

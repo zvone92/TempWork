@@ -1,4 +1,4 @@
-
+{% load static %}
 
 <nav class="navbar navbar-expand-lg navbar-light"  style="background-color: #FFD91A;">
   <a class="navbar-brand" href="{% url 'home' %}">Temp Work</a>
@@ -43,6 +43,7 @@
       </li>
       {% endif %}
     </ul>
+    <span>{{inbox}}</span><a  href="{% url 'messages' %}"> <img src="{% static 'envelope.png' %}"  height=30 width=30 > </a>
 
   </div>
 

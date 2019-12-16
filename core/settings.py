@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'temp.apps.TempConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
+    'messaging.apps.MessagingConfig',
+
 ]
 
 

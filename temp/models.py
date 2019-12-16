@@ -16,7 +16,7 @@ class Worker(models.Model):
     name    = models.CharField(max_length=25)
     slug    = models.SlugField(max_length=120)
     dob     = models.DateField(null=True, blank=True)
-    image   = models.ImageField(null=True, blank=True, upload_to='images')
+    image   = models.ImageField(null=True, blank=True, upload_to='images', default='/images/default-avatar.png')
     skill   = models.CharField(max_length=25)
     details = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
