@@ -43,7 +43,13 @@
       </li>
       {% endif %}
     </ul>
-    <span>{{inbox}}</span><a  href="{% url 'messages' %}"> <img src="{% static 'envelope.png' %}"  height=30 width=30 > </a>
+    <a href="{% url 'messages' %}" class="notification">
+      <img src="{% static 'messaging/envelope.png' %}"  height=30 width=30 >
+      {% if inbox > 0 %}
+        <span class="badge">{{inbox}}</span>
+      {% endif %}
+    </a>
+
 
   </div>
 

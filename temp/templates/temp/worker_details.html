@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="col-md-6">
+<div class="col-md-6" onclick="window.location='{% url 'messages' worker.user.id %}';" style="cursor: pointer;">
   <br>
   <div class="img-thumbnail">
     {% if worker.image %}

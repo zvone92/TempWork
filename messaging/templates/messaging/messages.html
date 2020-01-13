@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
-
 {% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
+
 
 
 <div class="container">
@@ -21,28 +22,22 @@
             </div>
           </div>
           <div class="inbox_chat">
-            <div class="chat_list active_chat">
-              <div class="chat_people">
-                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>Test, which is a new approach to have all solutions
-                    astrology under one roof.</p>
-                  </div>
-                </div>
-              </div>
 
               {% for people in recent_people %}
               <div class="chat_list">
-                <div class="chat_people" onclick="window.location='{% url 'messages' people.from_user.id %}';" style="cursor: pointer;" >
-                  {%  if people.from_user == user.request %}
+                <div class="chat_people" onclick="window.location='{% url 'messages' people.to_user.id %}';" style="cursor: pointer;" >
+                  {%  if people.from_user == request.user %}
                     <div class="chat_img" > <img src="{{  people.to_user.profile.image.url }}" alt="sunil"> </div>
                   {% else %}
                     <div class="chat_img" > <img src="{{  people.from_user.profile.image.url }}" alt="sunil"> </div>
                   {% endif %}
                   <div class="chat_ib">
                     <h5>{{people.from_user}} <span class="chat_date">{{people.timestamp | date }}</span></h5>
-                    <p>{{people.message}}</p>
+                    {% if people.status == 'unread' and people.from_user != request.user %}
+                      <strong>{{people.message}} </strong> <img src="{% static 'messaging/unread.png' %}"  height=20 width=20 >
+                    {% else %}
+                      <p>{{people.message}}</p>
+                    {% endif %}
                   </div>
                 </div>
               </div>
@@ -79,7 +74,9 @@
                  {% endif %}
 
                 {% empty %}
-                <p>Start conversation...</p>
+
+                <div class="chat_img" > <img src="{{  new_recipient.profile.image.url }}" alt="sunil"> </div>
+                <p>Start conversation with {{new_recipient.username}}</p>
 
                 {% endfor %}
 
