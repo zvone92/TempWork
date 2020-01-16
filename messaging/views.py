@@ -10,21 +10,19 @@ def messages(request, recipient_id=None):
     # LOGGED IN USER
     user = request.user
     #ALL CONVERSATIONS THAT USER IS PARTICIPATING IN
-    recent_people = Conversation.objects.filter(participants=user)
+    recent_conversations = Conversation.objects.filter(participants=user)
+    print([i.mesagges.last() for i in recent_conversations], 'recent')
     # LAST MESSAGE FROM EACH CONVERSATION
-    last_message = [i.mesagges.last() for i in recent_people]
-    print(last_message, 'last message')
 
-    # CREATE CONVERSATION WITH THIS PERSON, IF IT DOESN'T EXISTS
-    if (recipient_id != None) and (recent_people.filter(participants=recipient_id).exists() != True): # bug:
-        recipient = get_object_or_404(User, pk=recipient_id)
-        conversation = Conversation.objects.create()
-        conversation.save()
-        conversation.participants.add(user, recipient_id) # lst point
+    last_message = [(i.mesagges.last(), i.mesagges.last().correspondent(user)) for i in recent_conversations]
+    print(last_message, 'last message')
+    new_recipient = None
+
+
 
     # IF THERE IS NO RECIPIENT SELECTED, GET THE LAST CONVERSATION
     if recipient_id == None:
-        last_conversation = recent_people.last()
+        last_conversation = recent_conversations.last()
         if last_conversation != None:
             all_messages= last_conversation.mesagges.all()
         else:
@@ -33,7 +31,7 @@ def messages(request, recipient_id=None):
     # GET CONVERSATION WITH THIS RECIPIENT, OR CREATE ONE
     else:
         #ALL MESSAGES FROM SELECTED CONVERSATION
-        last_conversation =  recent_people.filter(participants=recipient_id).first()
+        last_conversation =  recent_conversations.filter(participants=recipient_id).first()
         if last_conversation != None:
             all_messages= last_conversation.mesagges.all()
         else:
@@ -43,9 +41,10 @@ def messages(request, recipient_id=None):
     # CREATE FORM OBJECT IF MESSAGE FORM IS FILLED OUT
     form = SendMessageForm(request.POST or None)
 
-    context = {'recent_people':last_message,
+    context = {'recent_conversations':last_message,
                'last_conversation': all_messages,
-               'form': form, }
+               'form': form,
+               }
 
     # IF USER ENTERED CONVERSATION WITH RECIPIENT
     if recipient_id != None:
@@ -55,6 +54,7 @@ def messages(request, recipient_id=None):
                 if (message.status == 'unread') and (message.from_user != user):
                     message.status = 'read'
                     message.save()
+
         # RECIPIENT
         recipient = User.objects.get(pk=recipient_id)
         # IF USER SENT VALID MESSAGE, SAVE THAT MESSAGE
@@ -63,8 +63,15 @@ def messages(request, recipient_id=None):
             message.from_user  =  user
             message.to_user    =  recipient
             message.save()
+            # CREATE CONVERSATION WITH THIS PERSON, IF IT DOESN'T EXISTS
+            if recent_conversations.filter(participants=recipient_id).exists() != True: # bug:
+                recipient = get_object_or_404(User, pk=recipient_id)
+                conversation = Conversation.objects.create()
+                conversation.save()
+                conversation.participants.add(user, recipient_id) # lst point
             # ADD MESSAGE TO BELONGING CONVERSATION
-            if last_conversation != None:
+            last_conversation = recent_conversations.filter(participants=recipient_id).first()
+            if  last_conversation != None:
                 last_conversation.mesagges.add(message)
             return redirect('messages', recipient_id)
         #render the same page with empty form
