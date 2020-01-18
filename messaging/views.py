@@ -7,36 +7,39 @@ from .forms import SendMessageForm
 
 
 def messages(request, recipient_id=None):
-    # LOGGED IN USER
+    # CURRENT USER
     user = request.user
+    # IF NO RECIPIENT SELECTED, GET LAST CORRESPONDENT
+    if recipient_id  == None:
+        last_recipient =  Message.objects.last().correspondent(user) # BUG IF NO MESSGS!
+
     #ALL CONVERSATIONS THAT USER IS PARTICIPATING IN
     recent_conversations = Conversation.objects.filter(participants=user)
-    print([i.mesagges.last() for i in recent_conversations], 'recent')
+    print(recent_conversations)
     # LAST MESSAGE FROM EACH CONVERSATION
-
     last_message = [(i.mesagges.last(), i.mesagges.last().correspondent(user)) for i in recent_conversations]
-    print(last_message, 'last message')
-    new_recipient = None
-
 
 
     # IF THERE IS NO RECIPIENT SELECTED, GET THE LAST CONVERSATION
     if recipient_id == None:
-        last_conversation = recent_conversations.last()
+        last_conversation = recent_conversations.filter(participants=last_recipient).first() # need to be from last msg sent conversation
+        # IF PREVIOUS CONVERSATION EXISTS
         if last_conversation != None:
-            all_messages= last_conversation.mesagges.all()
+            #ALL MESSAGES FROM SELECTED CONVERSATION
+            all_messages = last_conversation.mesagges.all()
+        # THERE ARE NO PREVIOUS CONVERSATION
         else:
             all_messages= None
 
-    # GET CONVERSATION WITH THIS RECIPIENT, OR CREATE ONE
+    # IF RECIPIENT SELECTED, GET CONVERSATION WITH THIS RECIPIENT
     else:
-        #ALL MESSAGES FROM SELECTED CONVERSATION
-        last_conversation =  recent_conversations.filter(participants=recipient_id).first()
+        last_conversation =  recent_conversations.filter(participants=recipient_id).first() #change from first()
         if last_conversation != None:
+            #ALL MESSAGES FROM SELECTED CONVERSATION
             all_messages= last_conversation.mesagges.all()
+            last_recipient = all_messages.last().correspondent(user)
         else:
             all_messages= None
-
 
     # CREATE FORM OBJECT IF MESSAGE FORM IS FILLED OUT
     form = SendMessageForm(request.POST or None)
@@ -47,16 +50,16 @@ def messages(request, recipient_id=None):
                }
 
     # IF USER ENTERED CONVERSATION WITH RECIPIENT
-    if recipient_id != None:
+    if last_recipient != None:
         # 'READ' ALL 'UNREAD' MESSAGES FROM THAT CONVERSATION
         if all_messages != None:
             for message in all_messages:
                 if (message.status == 'unread') and (message.from_user != user):
                     message.status = 'read'
                     message.save()
-
         # RECIPIENT
-        recipient = User.objects.get(pk=recipient_id)
+        recipient = last_recipient
+        #User.objects.get(pk=recipient_id)
         # IF USER SENT VALID MESSAGE, SAVE THAT MESSAGE
         if form.is_valid():
             message = form.save(commit=False)
@@ -64,20 +67,21 @@ def messages(request, recipient_id=None):
             message.to_user    =  recipient
             message.save()
             # CREATE CONVERSATION WITH THIS PERSON, IF IT DOESN'T EXISTS
-            if recent_conversations.filter(participants=recipient_id).exists() != True: # bug:
-                recipient = get_object_or_404(User, pk=recipient_id)
+            if recent_conversations.filter(participants=recipient).exists() != True: # bug:
+                #recipient = get_object_or_404(User, pk=recipient_id)
                 conversation = Conversation.objects.create()
                 conversation.save()
-                conversation.participants.add(user, recipient_id) # lst point
+                conversation.participants.add(user, recipient) # lst point
             # ADD MESSAGE TO BELONGING CONVERSATION
-            last_conversation = recent_conversations.filter(participants=recipient_id).first()
+            last_conversation = recent_conversations.filter(participants=recipient).first()
             if  last_conversation != None:
                 last_conversation.mesagges.add(message)
-            return redirect('messages', recipient_id)
+            return redirect('messages', recipient.id)
         #render the same page with empty form
         else:
+            print("here first")
             return render(request, 'messaging/messages.html', context)
-
+    print("here second")
     return render(request, 'messaging/messages.html', context)
 
 
