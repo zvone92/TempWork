@@ -5,6 +5,16 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.text import slugify
 
+
+class Job(models.Model):
+    job_type = models.CharField(max_length=200)
+    charging = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return str(self.job_type) + ": HRK" + str(self.charging)
+
+
+
 class Worker(models.Model):
     '''worker object is an ad that is going to be posted by user'''
     STATUS_CHOICES = {

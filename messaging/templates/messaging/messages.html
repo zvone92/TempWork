@@ -48,13 +48,13 @@
           </div>
           <div class="mesgs">
             <div class="msg_history">
-              {% for message in last_conversation %}
+              {% for message in last_conversation reversed  %}
 
                 {% if message.from_user == request.user %}
                   <div class="outgoing_msg">
                     <div class="sent_msg">
                       <p>{{message.message}}</p>
-                      <span class="time_date"> {{message.timestamp}} </span>
+                      <span class="time_date"> {{message.timestamp}} </span>              
                     </div>
                   </div>
 

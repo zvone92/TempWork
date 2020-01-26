@@ -120,6 +120,7 @@ img {
 }
 
 .received_withd_msg p {
+  word-wrap: break-word;
   background: #ebebeb none repeat scroll 0 0;
   border-radius: 3px;
   color: #646464;
@@ -145,10 +146,11 @@ img {
   padding: 30px 15px 0 25px;
   width: 60%;
 
-
 }
 
 .sent_msg p {
+  word-wrap: break-word;
+  overflow: hidden;
   background: #05728f none repeat scroll 0 0;
   border-radius: 3px;
   font-size: 14px;
@@ -157,12 +159,13 @@ img {
   padding: 5px 10px 5px 12px;
   width:100%;
 
+
 }
-.outgoing_msg{
-  overflow:hidden;
+.outgoing_msg {
   margin:26px 0 26px;
-  height: 6%;
+  height: auto;
 }
+
 .sent_msg {
   float: right;
   width: 46%;
@@ -207,5 +210,7 @@ img {
 .msg_history {
   height: 516px;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse;
 
 }

@@ -7,7 +7,7 @@ class SendMessageForm(forms.ModelForm):
         model = Message
 
         widgets = {
-            'message': forms.TextInput(attrs={'placeholder': 'Write message'}),
+            'message': forms.Textarea(attrs={'placeholder': 'Write message', 'rows': 1, 'cols': 40}),
         }
 
         fields = ['message']

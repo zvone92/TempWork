@@ -14,7 +14,7 @@ class Message(models.Model):
         ('archived', 'Archived')
     }
 
-    message    = models.CharField(max_length=125)
+    message    = models.TextField()
     from_user  = models.ForeignKey(User, on_delete=models.CASCADE, related_name='from_user')
     to_user    = models.ForeignKey(User, on_delete=models.CASCADE, related_name='to_user')
     timestamp  = models.DateTimeField(auto_now_add=True)
