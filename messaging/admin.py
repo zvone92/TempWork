@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Message, Conversation
 
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('from_user', 'to_user', 'message', 'timestamp', 'status')
+    list_display = ('message','from_user', 'to_user', 'timestamp', 'status')
 
 
 
