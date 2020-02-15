@@ -1,9 +1,12 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Worker, Profile
 from .forms import WorkerCreateForm
 from django.db.models import Q
 from messaging.msg_util import new_messages
 
+
+@login_required
 def home(request):
     '''All workers ads are showing here'''
     workers = Worker.objects.all()
@@ -23,11 +26,11 @@ def home(request):
     return render(request, 'temp/home.html', context)
 
 def worker_profile(request):
-    #worker  = Worker.objects.get(user=request.user)
-    profile = Profile.objects.get(user=request.user)
+    worker  = Worker.objects.get(user=request.user)
+    #profile = Profile.objects.get(user=request.user)
 
-    context = { #'worker': worker,
-                'profile': profile
+    context = { 'worker': worker,
+
     }
 
     return render(request, 'temp/worker_profile.html', context)

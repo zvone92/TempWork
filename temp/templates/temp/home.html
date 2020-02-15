@@ -1,39 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 <div class="row">
+
   {% for worker in workers %}
+  <div class="col-md-4" onclick="window.location='{{ worker.get_absolute_url }}';" style="cursor: pointer; border-radius: 2rem;">
+    <div class="card profile-card-2">
 
-  <div class="col-md-6">
-    <br>
-    <div class="img-thumbnail">
-     {% if worker.image %}
-     <img src="{{ worker.image.url }}"  height=100 width=100 class="d-inline-block alighn-top">
-     {% else %}
-     <img src="/media/images/default-avatar.png" alt="" height=100 width=100 class="d-inline-block alighn-top">
-     {% endif %}
-      <br>
+      <div class="card-img-block">
+        <img class="img-fluid" src="https://images.pexels.com/photos/877695/pexels-photo-877695.jpeg?auto=compress&cs=tinysrgb&h=350" alt="Card image cap" />
+      </div>
 
-      <br>
-      <a href="{{ worker.get_absolute_url }}">{{ worker.name }} </a><small style="float: right"> {{ worker.created }}</small>
-      <h2> {{ worker.skill }} </h2>
-      <br>
-      <h5> {{ worker.dob }} </h5>
-      <p > {{ worker.total_medals}} medals </p>
-
+      <div class="card-body pt-5">
+        {% if worker.image %}
+        <img src="{{ worker.image.url }}" alt="profile-image"  height=80 width=80 class="profile">
+        {% else %}
+        <img src="/media/images/default-avatar.png" alt="profile-image" height=80 width=80  class="profile">
+        {% endif %}
+        <small> {{ worker.name }}</small>
+        <h5 class="card-title">{{ worker.skill  }}</h5>
+        <p class="card-text">Lorem Ipsum is simply dummy text Lorem Ipsum has been the industry's standard dummy text</p>
+      <!--  <div class="icon-block"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"> <i class="fa fa-twitter"></i></a><a href="#"> <i class="fa fa-google-plus"></i></a></div>-->
+      </div>
     </div>
-    <br>
   </div>
   {% empty %}
   <div class="container-fluid">
     <h3>No workers found by "{{ request.GET.q }}"</h3>
   </div>
-
-
-
-  {% endfor %}
 </div>
+{% endfor %}
 
 
 {% endblock %}

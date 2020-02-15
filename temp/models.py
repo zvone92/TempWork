@@ -5,14 +5,14 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.text import slugify
 
-
+'''
 class Job(models.Model):
     job_type = models.CharField(max_length=200)
     charging = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return str(self.job_type) + ": HRK" + str(self.charging)
-
+'''
 
 
 class Worker(models.Model):
@@ -59,7 +59,7 @@ class Profile(models.Model):
     '''Extended user model'''
     user    = models.OneToOneField(User, on_delete=models.CASCADE)
     dob     = models.DateField(null=True, blank=True)
-    image   = models.ImageField(null=True, blank=True, upload_to='images')
+    image   = models.ImageField(null=True, blank=True, upload_to='images', default='/images/default-avatar.png')
 
     def __str__(self):
         return self.user.username

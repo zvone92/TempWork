@@ -4,6 +4,117 @@
 
 {% block content %}
 
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"><!--left col-->
+      <div class="text-center">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+        <h6>Upload a different photo...</h6>
+        {{ form.image }}
+      </div><hr><br>
+
+      <div class="list-group ">
+        <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
+        <a href="#" class="list-group-item list-group-item-action">User Management</a>
+        <a href="#" class="list-group-item list-group-item-action">Used</a>
+        <a href="#" class="list-group-item list-group-item-action">Enquiry</a>
+        <a href="#" class="list-group-item list-group-item-action">Dealer</a>
+        <a href="#" class="list-group-item list-group-item-action">Media</a>
+        <a href="#" class="list-group-item list-group-item-action">Post</a>
+        <a href="#" class="list-group-item list-group-item-action">Category</a>
+        <a href="#" class="list-group-item list-group-item-action">New</a>
+        <a href="#" class="list-group-item list-group-item-action">Comments</a>
+        <a href="#" class="list-group-item list-group-item-action">Appearance</a>
+        <a href="#" class="list-group-item list-group-item-action">Reports</a>
+        <a href="#" class="list-group-item list-group-item-action">Settings</a>
+
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Your Profile</h4>
+              <hr>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+
+                <div class="form-group row">
+                  <label for="username" class="col-4 col-form-label">User Name*</label>
+                  <div class="col-8">
+                    <input id="username" name="username" placeholder="Username" class="form-control here" required="required" type="text">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="name" class="col-4 col-form-label">First Name</label>
+                  <div class="form-group col-md-6 mb-0">
+                    {{ form.name|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="lastname" class="col-4 col-form-label">Last Name</label>
+                  <div class="col-8">
+                    <input id="lastname" name="lastname" placeholder="Last Name" class="form-control here" type="text">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="text" class="col-4 col-form-label">Nick Name*</label>
+                  <div class="col-8">
+                    <input id="text" name="text" placeholder="Nick Name" class="form-control here" required="required" type="text">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="select" class="col-4 col-form-label">Display Name public as</label>
+                  <div class="col-8">
+                      {{ form.status|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="email" class="col-4 col-form-label">Email*</label>
+                  <div class="col-8">
+                    <input id="email" name="email" placeholder="Email" class="form-control here" required="required" type="text">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="website" class="col-4 col-form-label">Website</label>
+                  <div class="col-8">
+                    {{ form.skill|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="publicinfo" class="col-4 col-form-label">Public Info</label>
+                  <div class="col-8">
+                      {{ form.details|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="newpass" class="col-4 col-form-label">New Password</label>
+                  <div class="col-8">
+                    <input id="newpass" name="newpass" placeholder="New Password" class="form-control here" type="text">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="offset-4 col-8">
+                    <button name="submit" type="submit" class="btn btn-primary">Update My Profile</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <div class="form-row">
@@ -24,5 +135,5 @@
   </div>
   <button class="btn btn-outline-info" type="submit">Create</button>
 </form>
-
+-->
 {% endblock %}

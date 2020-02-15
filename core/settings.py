@@ -120,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Zagreb'
 
 USE_I18N = True
 
@@ -145,4 +145,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL  = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_REDIRECT_URL = 'home' # When user logs in, redirect to home page
+
+
+LOGIN_URL = 'login'  # if user is not loged in, redirect login page
+LOGIN_REDIRECT_URL = 'home'  # When user logs in, redirect to home page

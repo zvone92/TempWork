@@ -21,6 +21,7 @@
               </span> </div>
             </div>
           </div>
+          <!--Last conversations box---------------------------------------->
           <div class="inbox_chat">
 
               {% for conversation, correspondent in recent_conversations %}
@@ -46,6 +47,7 @@
               {% endfor %}
             </div>
           </div>
+          <!---Message history---------------------------------------------->
           <div class="mesgs">
             <div class="msg_history">
               {% for message in last_conversation reversed  %}
