@@ -23,6 +23,19 @@
   transform: translate(-50%, 0%);
 
 }
+
+.profile-card-1 .file {
+    position: relative;
+    overflow: hidden;
+    left: 6%;
+    margin-top: 3px;
+    width: 15%;
+    border: none;
+    border-radius: 0;
+    font-size: 12px;
+    background: #212529b8;
+}
+
 .profile-card-1 h5{
     font-weight:600;
     color:#007bff;
@@ -31,7 +44,7 @@
     font-weight:300;
     font-size:15px;
 }
- 
+
 .profile-card-1 .description{
     padding: 0 30px 30px;
 }
