@@ -39,6 +39,7 @@ def worker_profile(request):
 def worker_details(request, worker_id, slug):
     '''Show details about worker from id passed in request'''
     worker  = get_object_or_404(Worker, pk=worker_id)   # Get object by this id.
+    print(worker.phone)
     context = {
         'worker': worker,
     }

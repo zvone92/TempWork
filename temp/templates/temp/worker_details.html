@@ -75,10 +75,10 @@
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <label>Name</label>
+                  <label>{{worker.user.username}}</label>
                 </div>
                 <div class="col-md-6">
-                  <p>Kshiti Ghelani</p>
+                  <p>{{worker.name}} {{worker.lastname}}</p>
                 </div>
               </div>
               <div class="row">
@@ -94,7 +94,7 @@
                   <label>Phone</label>
                 </div>
                 <div class="col-md-6">
-                  <p>123 456 7890</p>
+                  <p>{{worker.phone}}</p>
                 </div>
               </div>
               <div class="row">
@@ -102,7 +102,7 @@
                   <label>Profession</label>
                 </div>
                 <div class="col-md-6">
-                  <p>Web Developer and Designer</p>
+                  <p>{{worker.skill}}</p>
                 </div>
               </div>
             </div>
@@ -160,9 +160,10 @@
         </div>
 
       </div>
-      <div class="icon-block"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"> <i class="fa fa-twitter"></i></a><a href="#"> <i class="fa fa-google-plus"></i></a></div>
+    <!--  <div class="icon-block"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"> <i class="fa fa-twitter"></i></a><a href="#"> <i class="fa fa-google-plus"></i></a></div>-->
     </div>
   </div>
 </div>
+<br>
 
 {% endblock %}

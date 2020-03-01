@@ -41,11 +41,15 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'crispy_forms',
     'messaging.apps.MessagingConfig',
+    'phonenumber_field',
 
 ]
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+PHONENUMBER_DEFAULT_FORMAT = 'INTERNATIONAL'
 
 
 MIDDLEWARE = [
