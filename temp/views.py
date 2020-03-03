@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Worker, Profile
-from .forms import WorkerCreateForm
+from .forms import WorkerCreateForm, UpdateImageForm
 from django.db.models import Q
 from messaging.msg_util import new_messages
 
@@ -27,10 +27,20 @@ def home(request):
 
 def worker_profile(request):
     worker  = Worker.objects.get(user=request.user)
+    '''Get object by id ,edit/change object data and save it to db'''
+    #task = get_object_or_404(Task, pk=task_id)
+    form = UpdateImageForm(request.POST or None, request.FILES or None, instance=worker)
+
+    if form.is_valid():
+        print("valid form")
+        form.save()
+        print("worker image saved")
+        return redirect('worker_profile')
+
     #profile = Profile.objects.get(user=request.user)
 
     context = { 'worker': worker,
-
+                'form':form,
     }
 
     return render(request, 'temp/worker_profile.html', context)
@@ -39,7 +49,6 @@ def worker_profile(request):
 def worker_details(request, worker_id, slug):
     '''Show details about worker from id passed in request'''
     worker  = get_object_or_404(Worker, pk=worker_id)   # Get object by this id.
-    print(worker.phone)
     context = {
         'worker': worker,
     }

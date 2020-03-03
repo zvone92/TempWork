@@ -3,6 +3,7 @@ from .models import Worker
 from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 
+
 class WorkerCreateForm(forms.ModelForm):
 
 
@@ -25,3 +26,14 @@ class WorkerCreateForm(forms.ModelForm):
 
     #attrs={'type': 'date'},
     # ,input_formats=('%m/%d/%Y', ))
+
+
+class UpdateImageForm(forms.ModelForm):
+
+    class Meta:
+        model = Worker
+        fields = ['image']
+        labels = {'image': 'Change Photo'}
+        widgets = {'image':forms.FileInput(
+        attrs={'style':'display: none;','class':'form-control', 'required': False}
+         )}

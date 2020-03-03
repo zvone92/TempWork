@@ -17,7 +17,7 @@ class Message(models.Model):
     message    = models.TextField()
     from_user  = models.ForeignKey(User, on_delete=models.CASCADE, related_name='from_user')
     to_user    = models.ForeignKey(User, on_delete=models.CASCADE, related_name='to_user')
-    timestamp  = models.DateTimeField(auto_now_add=True)
+    timestamp  = models.DateTimeField(auto_now_add=True)  #models.DateTimeField() 
     status     = models.CharField(max_length=10, choices=STATUS_CHOICES, default='unread')
     #!! If you decide to accept 'new_field' as a nullable field you may want to accept 'no input' as valid input . Then you have to add the blank=True statement as well:
     #conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, blank=True, null=True)

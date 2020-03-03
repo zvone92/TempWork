@@ -6,6 +6,13 @@ from django.contrib.auth.models import User
 from .forms import SendMessageForm
 
 
+'''
+message = form.save(commit=False)
+message.timestamp = timezone.datetime.now()
+form.save()
+'''
+
+
 def messages(request, recipient_id=None):
     # CURRENT USER
     user = request.user
@@ -14,8 +21,9 @@ def messages(request, recipient_id=None):
     recent_conversations = Conversation.objects.filter(participants=user).order_by('-pk')
     print('there are recent conversations',recent_conversations.exists())
 
+    # IF THERE ARE NO RECENT CONVERSATIONS TO DISPLAY
     if not recent_conversations:
-        # IF THERE ARE NO RECENT CONVERSATIONS
+        # THERE WILL BE NO LAST MESSAGES TO DISPLAY FROM CONVERSATION
         last_message = None
     else:
         # LAST MESSAGE FROM EACH CONVERSATION
@@ -58,7 +66,7 @@ def messages(request, recipient_id=None):
             conversation = Conversation.objects.create()
             conversation.save()
             conversation.participants.add(user, last_recipient) # lst point
-            # ADD MESSAGE TO BELONGING CONVERSATION
+            # ADD MESSAGE TO BELONGING CONVERSATIONall_messages
             conversation.mesagges.add(message)
 
             return redirect('messages', last_recipient.id)
@@ -75,12 +83,15 @@ def messages(request, recipient_id=None):
 
     # RECIPIENT IS SELECTED AND CONVERSATIONS EXISTS
     elif (recipient_id != None) and (recent_conversations.exists()):
-        last_conversation =  recent_conversations.filter(participants=recipient_id).first()
+        last_conversation =  recent_conversations.filter(participants=recipient_id).first() # '.first' is used to return None if there is no last  conversation
         recipient = get_object_or_404(User, pk=recipient_id)  # CURRENT RECIPIENT
         new_recipient = recipient
         if last_conversation != None:
             #ALL MESSAGES FROM SELECTED CONVERSATION
-            all_messages= last_conversation.mesagges.all()                      # READ ALL MESSAGES
+            all_messages = last_conversation.mesagges.all()
+            all_messages.filter(from_user=recipient, status='unread').update(status='read')  # READ ALL MESSAGES
+            for msg in all_messages:
+                msg.save()
         else:
             all_messages= None
 
@@ -142,7 +153,7 @@ def messages(request, recipient_id=None):
             conversation.save()
             conversation.participants.add(user, recipient) # lst point
             conversation.mesagges.add(message)
-            
+
 
         else:
             print("here 3")
