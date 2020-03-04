@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Conversation, Message
 from django.db.models import Q
 from django.contrib.auth.models import User
+from django.utils import timezone
 from .forms import SendMessageForm
 
 
@@ -56,6 +57,7 @@ def messages(request, recipient_id=None):
             message = form.save(commit=False)
             message.from_user  =  user
             message.to_user    =  last_recipient
+            message.timestamp  = timezone.datetime.now()
             message.save()
         else:
             print("here 1")
@@ -105,6 +107,7 @@ def messages(request, recipient_id=None):
             message = form.save(commit=False)
             message.from_user  =  user
             message.to_user    =  recipient
+            message.timestamp  = timezone.datetime.now()
             message.save()
 
             if recent_conversations.filter(participants=recipient).exists() != True:
@@ -147,6 +150,7 @@ def messages(request, recipient_id=None):
             message = form.save(commit=False)
             message.from_user  =  user
             message.to_user    =  recipient
+            message.timestamp  = timezone.datetime.now()
             message.save()
 
             conversation = Conversation.objects.create()
