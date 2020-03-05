@@ -11,26 +11,27 @@
         <img class="img-fluid" src="https://images.pexels.com/photos/877695/pexels-photo-877695.jpeg?auto=compress&cs=tinysrgb&w=1700" alt="Card image cap" />
       </div>
 
-      <div class="card-body pt-5">
+      <div class="card-body">
         {% if worker.image %}
         <img src="{{ worker.image.url }}" alt="profile-image"  height=150 width=150 class="profile">
         {% else %}
         <img src="/media/images/default-avatar.png" alt="profile-image" height=150 width=150 class="profile">
         {% endif %}
-        <br>
+
 
 
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
           <div class="description">
             <h5 class="card-title">{{ worker.skill  }}</h5>
-            <p class="card-text">Lorem Ipsum is simply dummy text Lorem Ipsum has been the industry's standard dummy text</p>
+          <!--  <p class="card-text">Lorem Ipsum is simply dummy text Lorem Ipsum has been the industry's standard dummy text</p> -->
           </div>
         </div>
-        <div class="col-md-6">
+
+        <div class="col-md-5">
           <div class="profile-head">
 
-            <p class="proile-rating">RANKINGS : <span>{{ worker.total_medals}}/10</span></p>
+            <!-- <p class="proile-rating">: <span>{{ worker.total_medals}}/10</span></p>-->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
@@ -48,9 +49,11 @@
 
 
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
           <div class="profile-work">
-            <p>WORK LINK</p>
+            {{ worker.details }}
+            Lorem Ipsum is simply dummy text Lorem Ipsum has been the industry's standard dummy text
+          <!--  <p>WORK LINK</p>
             <a href="">Website Link</a><br/>
             <a href="">Bootsnipp Profile</a><br/>
             <a href="">Bootply Profile</a>
@@ -59,10 +62,10 @@
             <a href="">Web Developer</a><br/>
             <a href="">WordPress</a><br/>
             <a href="">WooCommerce</a><br/>
-            <a href="">PHP, .Net</a><br/>
+            <a href="">PHP, .Net</a><br/> -->
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
           <div class="tab-content profile-tab" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
               <div class="row">
@@ -70,12 +73,12 @@
                   <label>User Id</label>
                 </div>
                 <div class="col-md-6">
-                  <p>Kshiti123</p>
+                  <p>{{worker.user.username}}</p>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <label>{{worker.user.username}}</label>
+                  <label>Name</label>
                 </div>
                 <div class="col-md-6">
                   <p>{{worker.name}} {{worker.lastname}}</p>
@@ -109,48 +112,10 @@
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
               <div class="row">
                 <div class="col-md-6">
-                  <label>Experience</label>
-                </div>
-                <div class="col-md-6">
-                  <p>Expert</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
                   <label>Hourly Rate</label>
                 </div>
                 <div class="col-md-6">
                   <p>10$/hr</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Total Projects</label>
-                </div>
-                <div class="col-md-6">
-                  <p>230</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>English Level</label>
-                </div>
-                <div class="col-md-6">
-                  <p>Expert</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Availability</label>
-                </div>
-                <div class="col-md-6">
-                  <p>6 months</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <label>Your Bio</label><br/>
-                  <p>Your detail description</p>
                 </div>
               </div>
             </div>
