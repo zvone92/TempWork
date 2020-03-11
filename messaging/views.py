@@ -31,12 +31,12 @@ def messages(request, recipient_id=None):
 
     #IF NO RECIPIENT SELECTED, AND RECENT CONVERSATIONS EXISTS GET LAST CORRESPONDENT
     if (recipient_id  == None) and (recent_conversations.exists()):
-        last_recipient =  Message.objects.last().correspondent(user) # BUG IF NO MESSGS!      LAST RECIPIENT
+        last_recipient =  Message.objects.last().correspondent(user)
         new_recipient = None
         last_conversation = recent_conversations.filter(participants=last_recipient).first()
         if last_conversation != None:
             #ALL MESSAGES FROM SELECTED CONVERSATION
-            all_messages = last_conversation.mesagges.all()                     # READ ALL MESSAGES
+            all_messages = last_conversation.mesagges.all()  # READ ALL MESSAGES
         # THERE ARE NO PREVIOUS CONVERSATION
         else:
             all_messages= None
@@ -54,7 +54,6 @@ def messages(request, recipient_id=None):
             message.timestamp  = timezone.datetime.now()
             message.save()
         else:
-            print("here 1")
             return render(request, 'messaging/messages.html', context)
 
         if recent_conversations.filter(participants=last_recipient).exists() != True:
@@ -123,7 +122,6 @@ def messages(request, recipient_id=None):
             return redirect('messages', recipient.id)
 
         new_recipient = recipient
-        print("here 2")
         return render(request, 'messaging/messages.html', context)
 
 
@@ -154,7 +152,6 @@ def messages(request, recipient_id=None):
 
 
         else:
-            print("here 3")
             return render(request, 'messaging/messages.html', context)
 
 
@@ -175,5 +172,4 @@ def messages(request, recipient_id=None):
                'new_recipient': new_recipient
                }
 
-    print("here 4")
     return render(request, 'messaging/messages.html', context)
