@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, ProfileEditForm
+from django.contrib.auth.decorators import login_required
 from temp.models import Profile
 
 def register(request):
@@ -12,10 +13,7 @@ def register(request):
         if form.is_valid():
             new_user = form.save(commit=False)
             new_user.save()
-            #username = form.cleaned_data.get('username')
-            #password1 = form.cleaned_data.get('password1')
-            print(form)
-            Profile.objects.create(user=new_user)
+            Profile.objects.create(user=new_user) # creating user profile
             messages.success(request, 'Account created, you can now log in')
             return redirect('login')
 
@@ -23,3 +21,13 @@ def register(request):
         form = UserRegisterForm()
 
     return render(request, 'users/register.html' ,{'form': form})
+
+@login_required
+def edit_profile(request):
+    form = ProfileEditForm(request.POST or None, request.FILES or None, instance=request.user.profile)
+    if form.is_valid():
+        form.save() # Now save it to database
+        return redirect('home')
+
+    else:
+        return render(request, 'users/edit_profile.html', {'form': form})

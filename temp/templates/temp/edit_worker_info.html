@@ -12,7 +12,7 @@
     <div class="card-body">
       <div class="row text-center">
         <div class="col-md-12">
-          <h4>Your Profile</h4>
+          <h4>Edit Profile</h4>
           <hr>
         </div>
       </div>
@@ -64,7 +64,7 @@
                 {{ form.status|as_crispy_field }}
               </div>
               <div class="col-md-4 mb-0">
-                <button class="btn btn-info" type="submit">Create Profile</button>
+                <button class="btn btn-info" type="submit">Update Profile</button>
               </div>
             </div>
           </div>
@@ -82,36 +82,4 @@
 <br>
 
 
-
-<!--
-<div class="form-group row">
-<label for="lastname" class="col-4 col-form-label">Last Name</label>
-<div class="col-8">
-<input id="lastname" name="lastname" placeholder="Last Name" class="form-control here" type="text">
-</div>
-</div>
-
-
-
-<form method="post" enctype="multipart/form-data">
-{% csrf_token %}
-<div class="form-row">
-<div class="form-group col-md-6 mb-0">
-{{ form.name|as_crispy_field }}
-</div>
-<div class="form-group col-md-6 mb-0">
-{{ form.dob|as_crispy_field }}
-</div>
-</div>
-{{ form.image }}
-{{ form.details|as_crispy_field }}
-<div class="form-row">
-<div class="form-group col-md-6 mb-0">
-{{ form.skill|as_crispy_field }}
-{{ form.status|as_crispy_field }}
-</div>
-</div>
-<button class="btn btn-outline-info" type="submit">Create</button>
-</form>
--->
 {% endblock %}

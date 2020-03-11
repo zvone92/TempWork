@@ -7,12 +7,6 @@ from django.utils import timezone
 from .forms import SendMessageForm
 
 
-'''
-message = form.save(commit=False)
-message.timestamp = timezone.datetime.now()
-form.save()
-'''
-
 
 def messages(request, recipient_id=None):
     # CURRENT USER

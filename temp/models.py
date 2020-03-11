@@ -7,15 +7,6 @@ from django.utils.text import slugify
 from phonenumber_field.modelfields import PhoneNumberField
 from decimal import Decimal
 
-'''
-class Job(models.Model):
-    job_type = models.CharField(max_length=200)
-    charging = models.DecimalField(max_digits=10, decimal_places=2)
-
-    def __str__(self):
-        return str(self.job_type) + ": HRK" + str(self.charging)
-'''
-
 
 class Worker(models.Model):
     '''worker object is an ad that is going to be posted by user'''
@@ -24,7 +15,7 @@ class Worker(models.Model):
         ('published', 'Published')
     }
 
-    user     = models.ForeignKey(User, on_delete=models.CASCADE) #STVORITI OneToOne POLJE ZBOG UNIDIREKTOG ODNOSA
+    user     = models.ForeignKey(User, on_delete=models.CASCADE)
     name     = models.CharField(max_length=25, null=False)
     lastname = models.CharField(max_length=25, null=False)
     slug     = models.SlugField(max_length=120)
@@ -39,8 +30,6 @@ class Worker(models.Model):
     status   = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
     hourly_rate = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
 
-    #def __str__(self):
-    #    return  str(self.hourly_rate) + ": HRK"
 
     def summary(self):
         return self.details[:100]

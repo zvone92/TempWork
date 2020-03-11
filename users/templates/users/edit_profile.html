@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="content-section" >
+
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+    <div class="preview text-center">
+        <legend class="border-bottom mb-4">Profile</legend>
+        {% if request.user.profile.image %}
+          <img class="preview-img" src="{{ request.user.profile.image.url }}" alt="Preview Image" width="200" height="200"/>
+        {% else %}
+        <img class="preview-img" src="/media/images/default-avatar.png" alt="Preview Image" width="200" height="200"/>
+        {% endif %}
+
+        <div class="browse-button">
+            <i class="fa fa-pencil-alt"></i>
+             {{ form.image }}
+       </div>
+      <span class="Error"></span>
+    </div>
+      <fieldset class="form-group">
+
+         {{ form.dob|as_crispy_field }}
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Save changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

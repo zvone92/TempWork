@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Worker, Profile
-from .forms import WorkerCreateForm, UpdateImageForm
+from .forms import WorkerCreateForm, UpdateImageForm, EditWorkerInfoForm
 from django.db.models import Q
 from messaging.msg_util import new_messages
 
@@ -28,16 +28,11 @@ def home(request):
 def worker_profile(request):
     worker  = Worker.objects.get(user=request.user)
     '''Get object by id ,edit/change object data and save it to db'''
-    #task = get_object_or_404(Task, pk=task_id)
     form = UpdateImageForm(request.POST or None, request.FILES or None, instance=worker)
 
     if form.is_valid():
-        print("valid form")
         form.save()
-        print("worker image saved")
         return redirect('worker_profile')
-
-    #profile = Profile.objects.get(user=request.user)
 
     context = { 'worker': worker,
                 'form':form,
@@ -65,3 +60,16 @@ def create_worker(request):
 
     else:
         return render(request, 'temp/create_worker.html', {'form':form})
+
+
+def edit_worker_info(request):
+    worker  = Worker.objects.get(user=request.user)
+    form = EditWorkerInfoForm(request.POST or None, request.FILES or None, instance=worker)
+    if form.is_valid():
+        print('form is valid')
+        form.save() # Now save it to database
+        print('saved woker info')
+        return redirect('worker_profile')
+
+    else:
+        return render(request, 'temp/edit_worker_info.html', {'form':form})
