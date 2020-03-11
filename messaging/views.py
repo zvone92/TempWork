@@ -14,7 +14,6 @@ def messages(request, recipient_id=None):
 
     #ALL CONVERSATIONS THAT USER IS PARTICIPATING IN
     recent_conversations = Conversation.objects.filter(participants=user).order_by('-pk')
-    print('there are recent conversations',recent_conversations.exists())
 
     # IF THERE ARE NO RECENT CONVERSATIONS TO DISPLAY
     if not recent_conversations:
