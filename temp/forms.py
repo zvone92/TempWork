@@ -9,7 +9,7 @@ class WorkerCreateForm(forms.ModelForm):
     phone = PhoneNumberField(widget=PhoneNumberPrefixWidget(attrs={'placeholder': (u'Cellphone'), 'class':"form-control"}),
                        label= (u''), required=False, initial='+52')
 
-    BIRTH_YEAR_CHOICES = [str(i) for i in range(2005, 1950, -1 )] #['1990', '1991', '1992']
+    BIRTH_YEAR_CHOICES = [str(i) for i in range(2005, 1950, -1 )]
     dob = forms.DateField(
                 widget=forms.SelectDateWidget(
                         empty_label=("Choose Year", "Choose Month", "Choose Day"),

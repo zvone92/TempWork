@@ -9,7 +9,7 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'image', 'dob')
+    list_display = ('user', 'image')
 
 admin.site.register(Worker, PostAdmin)
 admin.site.register(Profile, ProfileAdmin)

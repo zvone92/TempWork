@@ -29,7 +29,7 @@
               <div class="chat_list">
                 <div class="chat_people" onclick="window.location='{% url 'messages' correspondent.id %}';" style="cursor: pointer;" >
 
-                  <div class="chat_img" > <img src="{{  correspondent.profile.image.url }}" alt="sunil"> </div>
+                  <div class="chat_img" > <img src="{{  correspondent.profile.image.url }}" alt="user image"> </div>
                   <div class="chat_ib">
                     <h5>{{correspondent}} <span class="chat_date">{{conversation.timestamp | date }}</span></h5>
                     {% if conversation.status == 'unread' and conversation.from_user != request.user %}
@@ -74,9 +74,12 @@
                  {% endif %}
 
                 {% empty %}
-
-                <div class="chat_img" > <img src="{{  new_recipient.profile.image.url }}" alt="sunil"> </div>
-                <p>Start conversation with {{new_recipient.username}}</p>
+                    {% if new_recipient %}
+                    <div class="chat_img" > <img src="{{  new_recipient.profile.image.url }}" alt="sunil"> </div>
+                    <p>Start conversation with {{new_recipient.username}}</p>
+                    {% else %}
+                    <p>No messages to display </p>
+                    {% endif %}
 
                 {% endfor %}
 

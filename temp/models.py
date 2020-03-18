@@ -56,7 +56,6 @@ def pre_save_slug(sender, **kwargs):
 class Profile(models.Model):
     '''Extended user model'''
     user    = models.OneToOneField(User, on_delete=models.CASCADE)
-    dob     = models.DateField(null=True, blank=True)
     image   = models.ImageField(null=True, blank=True, upload_to='images', default='/images/default-avatar.png')
 
     def __str__(self):

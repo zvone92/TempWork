@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import UserRegisterForm, ProfileEditForm
+from .forms import UserRegisterForm, ProfileEditForm, UserEditForm
 from django.contrib.auth.decorators import login_required
 from temp.models import Profile
 
@@ -24,10 +24,12 @@ def register(request):
 
 @login_required
 def edit_profile(request):
-    form = ProfileEditForm(request.POST or None, request.FILES or None, instance=request.user.profile)
-    if form.is_valid():
-        form.save() # Now save it to database
+    profile_form = ProfileEditForm(request.POST or None, request.FILES or None, instance=request.user.profile)
+    user_form = UserEditForm(request.POST or None,  instance=request.user)
+    if profile_form.is_valid() and user_form.is_valid():
+        profile_form.save()
+        user_form.save()
         return redirect('home')
 
     else:
-        return render(request, 'users/edit_profile.html', {'form': form})
+        return render(request, 'users/edit_profile.html', {'profile_form': profile_form, 'user_form': user_form })

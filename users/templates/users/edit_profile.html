@@ -11,7 +11,7 @@
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
     <div class="preview text-center">
-        <legend class="border-bottom mb-4">Profile</legend>
+        <legend class="border-bottom mb-4">User Profile</legend>
         {% if request.user.profile.image %}
           <img class="preview-img" src="{{ request.user.profile.image.url }}" alt="Preview Image" width="200" height="200"/>
         {% else %}
@@ -20,13 +20,14 @@
 
         <div class="browse-button">
             <i class="fa fa-pencil-alt"></i>
-             {{ form.image }}
+             {{ profile_form.image }}
        </div>
       <span class="Error"></span>
     </div>
+     <hr>
       <fieldset class="form-group">
-
-         {{ form.dob|as_crispy_field }}
+         {{ user_form.username|as_crispy_field }}
+         {{ user_form.email|as_crispy_field }}
       </fieldset>
       <div class="form-group">
         <button class="btn btn-outline-info" type="submit">Save changes</button>

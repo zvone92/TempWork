@@ -71,8 +71,6 @@ def messages(request, recipient_id=None):
             return redirect('messages', last_recipient.id)
 
 
-
-
     # recipient is selected and conversations exists
     elif (recipient_id != None) and (recent_conversations.exists()):
         last_conversation =  recent_conversations.filter(participants=recipient_id).first() # '.first' is used to return None if there is no last  conversation
@@ -145,7 +143,7 @@ def messages(request, recipient_id=None):
 
             conversation = Conversation.objects.create()
             conversation.save()
-            conversation.participants.add(user, recipient)  
+            conversation.participants.add(user, recipient)
             conversation.mesagges.add(message)
 
 
@@ -155,13 +153,10 @@ def messages(request, recipient_id=None):
 
         return redirect('messages', recipient.id)
 
-
-
     else:
         new_recipient = None
         last_message = None
         all_messages = None
-
 
 
     context = {'recent_conversations':last_message,
