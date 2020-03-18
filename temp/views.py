@@ -12,7 +12,7 @@ def home(request):
     all worker profiles are showing here
     users can search for Workers
     '''
-    workers = Worker.objects.all()
+    workers = Worker.objects.all().exclude(user=request.user)
     query   = request.GET.get('q')
     # if there is a search query, find by skill, details or name
     if query:
