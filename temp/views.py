@@ -12,7 +12,7 @@ def home(request):
     all worker profiles are showing here
     users can search for Workers
     '''
-    workers = Worker.objects.all().exclude(user=request.user, status='draft')
+    workers = Worker.objects.all().exclude(user=request.user)
     query   = request.GET.get('q')
     # if there is a search query, find by skill, details or name
     if query:
@@ -29,6 +29,8 @@ def home(request):
     }
     return render(request, 'temp/home.html', context)
 
+
+@login_required
 def worker_profile(request):
     '''
      worker profile page
@@ -48,6 +50,7 @@ def worker_profile(request):
     return render(request, 'temp/worker_profile.html', context)
 
 
+@login_required
 def worker_details(request, worker_id, slug):
     '''
     Show details about worker from id passed in request
@@ -59,6 +62,7 @@ def worker_details(request, worker_id, slug):
     return render(request, 'temp/worker_details.html', context)
 
 
+@login_required
 def create_worker(request):
     '''
     creating Worker profile
@@ -74,6 +78,7 @@ def create_worker(request):
         return render(request, 'temp/create_worker.html', {'form':form})
 
 
+@login_required
 def edit_worker_info(request):
     '''
     editing basic information about worker

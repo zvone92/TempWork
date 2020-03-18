@@ -7,7 +7,12 @@
   <div class="card profile-card-1">
 
     <div class="card-img-block">
+      {% if worker.cover %}
+      <img src="{{ worker.cover.url }}" alt="cover-image" width=1700 class="img-fluid">
+      {% else %}
       <img class="img-fluid" src="https://images.pexels.com/photos/877695/pexels-photo-877695.jpeg?auto=compress&cs=tinysrgb&w=1700" alt="Card image cap" />
+      {% endif %}
+
     </div>
 
     <div class="card-body pt-5">
@@ -55,7 +60,7 @@
     <div class="row">
       <div class="col-md-5">
         <div class="profile-work">
-            {{ worker.details}} 
+            {{ worker.details}}
         </div>
       </div>
       <div class="col-md-6">

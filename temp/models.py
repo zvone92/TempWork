@@ -21,7 +21,7 @@ class Worker(models.Model):
     slug     = models.SlugField(max_length=120)
     dob      = models.DateField(null=True, blank=True)
     image    = models.ImageField(null=True, blank=True, upload_to='images', default='/images/default-avatar.png')
-    cover    = models.ImageField(null=True, blank=True, upload_to='images', default='/images/default-avatar.png')
+    cover    = models.ImageField(null=True, blank=True, upload_to='images', default='/images/project-1.png')
     skill    = models.CharField(max_length=25)
     details  = models.TextField(null=True, blank=True)
     phone    = PhoneNumberField(null=True, blank=True, unique=True)

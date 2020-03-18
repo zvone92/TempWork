@@ -8,7 +8,12 @@
     <div class="card profile-card-1">
 
       <div class="card-img-block">
+        {% if worker.cover %}
+        <img src="{{ worker.cover.url }}" alt="cover-image" width=1700 class="img-fluid">
+        {% else %}
         <img class="img-fluid" src="https://images.pexels.com/photos/877695/pexels-photo-877695.jpeg?auto=compress&cs=tinysrgb&w=1700" alt="Card image cap" />
+        {% endif %}
+
       </div>
 
       <div class="card-body">
