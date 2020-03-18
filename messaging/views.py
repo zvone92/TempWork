@@ -9,34 +9,32 @@ from .forms import SendMessageForm
 
 
 def messages(request, recipient_id=None):
-    # CURRENT USER
+    # current user
     user = request.user
 
-    #ALL CONVERSATIONS THAT USER IS PARTICIPATING IN
+    # all conversations that current user is participating
     recent_conversations = Conversation.objects.filter(participants=user).order_by('-pk')
 
-    # IF THERE ARE NO RECENT CONVERSATIONS TO DISPLAY
+    # if there are no recent conversations to display
     if not recent_conversations:
-        # THERE WILL BE NO LAST MESSAGES TO DISPLAY FROM CONVERSATION
+        # there will be no last messages to display from conversation
         last_message = None
     else:
-        # LAST MESSAGE FROM EACH CONVERSATION
+        # last message from each conversation
         last_message = [(i.mesagges.last(), i.mesagges.last().correspondent(user)) for i in recent_conversations]
 
-    # CREATE FORM OBJECT IF MESSAGE FORM IS FILLED OUT
+    # create form object if message form is filled out
     form = SendMessageForm(request.POST or None)
 
-
-
-    #IF NO RECIPIENT SELECTED, AND RECENT CONVERSATIONS EXISTS GET LAST CORRESPONDENT
+    # if no recipient is selected, and recent conversations exists: get the last correspondent
     if (recipient_id  == None) and (recent_conversations.exists()):
         last_recipient =  Message.objects.last().correspondent(user)
         new_recipient = None
         last_conversation = recent_conversations.filter(participants=last_recipient).first()
         if last_conversation != None:
-            #ALL MESSAGES FROM SELECTED CONVERSATION
+            # all messages from selected conversation
             all_messages = last_conversation.mesagges.all()  # READ ALL MESSAGES
-        # THERE ARE NO PREVIOUS CONVERSATION
+        # there are no previous conversation
         else:
             all_messages= None
 
@@ -59,8 +57,8 @@ def messages(request, recipient_id=None):
             new_recipient = last_recipient
             conversation = Conversation.objects.create()
             conversation.save()
-            conversation.participants.add(user, last_recipient) # lst point
-            # ADD MESSAGE TO BELONGING CONVERSATIONall_messages
+            conversation.participants.add(user, last_recipient)
+            # add message to belonging conversation
             conversation.mesagges.add(message)
 
             return redirect('messages', last_recipient.id)
@@ -75,15 +73,16 @@ def messages(request, recipient_id=None):
 
 
 
-    # RECIPIENT IS SELECTED AND CONVERSATIONS EXISTS
+    # recipient is selected and conversations exists
     elif (recipient_id != None) and (recent_conversations.exists()):
         last_conversation =  recent_conversations.filter(participants=recipient_id).first() # '.first' is used to return None if there is no last  conversation
         recipient = get_object_or_404(User, pk=recipient_id)  # CURRENT RECIPIENT
         new_recipient = recipient
         if last_conversation != None:
-            #ALL MESSAGES FROM SELECTED CONVERSATION
+            # all messages from selected conversation
             all_messages = last_conversation.mesagges.all()
-            all_messages.filter(from_user=recipient, status='unread').update(status='read')  # READ ALL MESSAGES
+            # change unread message status to 'read'
+            all_messages.filter(from_user=recipient, status='unread').update(status='read')
             for msg in all_messages:
                 msg.save()
         else:
@@ -106,8 +105,8 @@ def messages(request, recipient_id=None):
                 new_recipient = recipient
                 conversation = Conversation.objects.create()
                 conversation.save()
-                conversation.participants.add(user, recipient) # lst point
-                # ADD MESSAGE TO BELONGING CONVERSATION
+                conversation.participants.add(user, recipient)
+                # add message to belonging conversation
                 conversation.mesagges.add(message)
                 new_recipient = recipient
                 return redirect('messages', recipient.id)
@@ -124,7 +123,7 @@ def messages(request, recipient_id=None):
         return render(request, 'messaging/messages.html', context)
 
 
-    #IF RECIPIENT IS SELECTED, AND THERE IS NO CONVERSATIONS
+    # if recipient is selected, and there is no conversations
     elif (recipient_id  != None) and (recent_conversations.exists() != True):
         recipient = get_object_or_404(User, pk=recipient_id)
         new_recipient = recipient
@@ -146,7 +145,7 @@ def messages(request, recipient_id=None):
 
             conversation = Conversation.objects.create()
             conversation.save()
-            conversation.participants.add(user, recipient) # lst point
+            conversation.participants.add(user, recipient)  
             conversation.mesagges.add(message)
 
 

@@ -8,15 +8,19 @@ from messaging.msg_util import new_messages
 
 @login_required
 def home(request):
-    '''All workers ads are showing here'''
+    '''
+    all worker profiles are showing here
+    users can search for Workers
+    '''
     workers = Worker.objects.all()
     query   = request.GET.get('q')
+    # if there is a search query, find by skill, details or name
     if query:
         workers  = Worker.objects.filter(
         Q(skill__icontains=query)|
         Q(details__icontains=query)|
         Q(name__icontains=query))
-
+    # checking for new messages, returns integer
     inbox = new_messages(request.user)
 
     context = {
@@ -26,8 +30,11 @@ def home(request):
     return render(request, 'temp/home.html', context)
 
 def worker_profile(request):
+    '''
+     worker profile page
+     user can change image or info
+    '''
     worker  = Worker.objects.get(user=request.user)
-    '''Get object by id ,edit/change object data and save it to db'''
     form = UpdateImageForm(request.POST or None, request.FILES or None, instance=worker)
 
     if form.is_valid():
@@ -42,8 +49,10 @@ def worker_profile(request):
 
 
 def worker_details(request, worker_id, slug):
-    '''Show details about worker from id passed in request'''
-    worker  = get_object_or_404(Worker, pk=worker_id)   # Get object by this id.
+    '''
+    Show details about worker from id passed in request
+    '''
+    worker  = get_object_or_404(Worker, pk=worker_id)
     context = {
         'worker': worker,
     }
@@ -51,11 +60,14 @@ def worker_details(request, worker_id, slug):
 
 
 def create_worker(request):
+    '''
+    creating Worker profile
+    '''
     form = WorkerCreateForm(request.POST or None, request.FILES or None)
     if form.is_valid():
-        worker = form.save(commit=False)   # commit=False tells Django not to send this to database yet, until i make some changes to it.
-        worker.user  = request.user # Set the user object
-        worker.save() # Now save it to database
+        worker = form.save(commit=False)
+        worker.user  = request.user
+        worker.save()
         return redirect('home')
 
     else:
@@ -63,11 +75,14 @@ def create_worker(request):
 
 
 def edit_worker_info(request):
+    '''
+    editing basic information about worker
+    '''
     worker  = Worker.objects.get(user=request.user)
     form = EditWorkerInfoForm(request.POST or None, request.FILES or None, instance=worker)
     if form.is_valid():
         print('form is valid')
-        form.save() # Now save it to database
+        form.save()
         print('saved woker info')
         return redirect('worker_profile')
 
