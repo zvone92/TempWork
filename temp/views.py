@@ -33,8 +33,8 @@ def home(request):
 @login_required
 def worker_profile(request):
     '''
-     worker profile page
-     user can change image or info
+     worker profile page with edit options
+     user can update/change profile image or cover image
     '''
     worker  = Worker.objects.get(user=request.user)
     form = UpdateImageForm(request.POST or None, request.FILES or None, instance=worker)
@@ -86,9 +86,7 @@ def edit_worker_info(request):
     worker  = Worker.objects.get(user=request.user)
     form = EditWorkerInfoForm(request.POST or None, request.FILES or None, instance=worker)
     if form.is_valid():
-        print('form is valid')
         form.save()
-        print('saved woker info')
         return redirect('worker_profile')
 
     else:

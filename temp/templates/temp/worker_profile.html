@@ -4,7 +4,7 @@
 
 <br>
 <div class="col-md-12" >
-  <div class="card profile-card-1">
+  <div class="card worker-profile">
 
     <div class="card-img-block">
       {% if worker.cover %}
@@ -12,8 +12,9 @@
       {% else %}
       <img class="img-fluid" src="https://images.pexels.com/photos/877695/pexels-photo-877695.jpeg?auto=compress&cs=tinysrgb&w=1700" alt="Card image cap" />
       {% endif %}
-
     </div>
+
+
 
     <div class="card-body pt-5">
       {% if worker.image %}
@@ -23,7 +24,7 @@
       {% endif %}
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="file btn btn-primary">{{form}}   <button class="btn btn-outline-info" type="submit"> Save</button></div>
+        <div class="file btn btn-primary">{{form}}<button class="btn btn-outline-info" type="submit"> Save</button></div>
         <div class="col-1">
 
         </div>
@@ -35,12 +36,10 @@
       <div class="col-md-5">
         <div class="description">
           <h5 class="card-title">{{ worker.skill }}</h5>
-
         </div>
       </div>
       <div class="col-md-5">
         <div class="profile-head">
-
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
