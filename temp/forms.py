@@ -42,12 +42,21 @@ class EditWorkerInfoForm(forms.ModelForm):
 
 
 
-class UpdateImageForm(forms.ModelForm):
+class ProfileImageForm(forms.ModelForm):
 
     class Meta:
         model = Worker
         fields = ['image']
-        labels = {'image': 'Change Photo'}
+        '''
+        labels = {'image': 'Chose image'}
         widgets = {'image':forms.FileInput(
         attrs={'style':'display: none;','class':'form-control', 'required': False}
-         )}
+        )}
+        '''
+
+
+class CoverImageForm(forms.ModelForm):
+
+    class Meta:
+        model = Worker
+        fields = ['cover']

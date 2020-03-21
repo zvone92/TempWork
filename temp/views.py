@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Worker, Profile
-from .forms import WorkerCreateForm, UpdateImageForm, EditWorkerInfoForm
+from .forms import WorkerCreateForm, ProfileImageForm, CoverImageForm, EditWorkerInfoForm
 from django.db.models import Q
 from messaging.msg_util import new_messages
 
@@ -37,14 +37,17 @@ def worker_profile(request):
      user can update/change profile image or cover image
     '''
     worker  = Worker.objects.get(user=request.user)
-    form = UpdateImageForm(request.POST or None, request.FILES or None, instance=worker)
+    profile_img_form = ProfileImageForm(request.POST or None, request.FILES or None, instance=worker)
+    cover_img_form   = CoverImageForm(request.POST or None, request.FILES or None, instance=worker)
 
-    if form.is_valid():
-        form.save()
+    if profile_img_form.is_valid() and cover_img_form.is_valid():
+        profile_img_form.save()
+        cover_img_form.save()
         return redirect('worker_profile')
 
     context = { 'worker': worker,
-                'form':form,
+                'profile_img_form': profile_img_form,
+                'cover_img_form': cover_img_form,                
     }
 
     return render(request, 'temp/worker_profile.html', context)

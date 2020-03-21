@@ -8,28 +8,33 @@
 
     <div class="card-img-block">
       {% if worker.cover %}
-      <img src="{{ worker.cover.url }}" alt="cover-image" width=1700 class="img-fluid">
+      <img src="{{ worker.cover.url }}" alt="cover-image" width=1700 class="image img-fluid">
       {% else %}
-      <img class="img-fluid" src="https://images.pexels.com/photos/877695/pexels-photo-877695.jpeg?auto=compress&cs=tinysrgb&w=1700" alt="Card image cap" />
+      <img src="https://images.pexels.com/photos/877695/pexels-photo-877695.jpeg?auto=compress&cs=tinysrgb&w=1700" alt="Card image cap" class="image"/>
       {% endif %}
+      <div class="middle">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="text"><a class="fa fa-edit">{{cover_img_form}}</a><button class="btn btn-outline-info" type="submit">Update</button></div>
+        </form>
+      </div>
     </div>
 
-
-
     <div class="card-body pt-5">
-      {% if worker.image %}
-      <img src="{{ worker.image.url }}" alt="profile-image"  height=150 width=150 class="profile">
-      {% else %}
-      <img src="/media/images/default-avatar.png" alt="profile-image" height=150 width=150 class="profile">
-      {% endif %}
-      <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="file btn btn-primary">{{form}}<button class="btn btn-outline-info" type="submit"> Save</button></div>
-        <div class="col-1">
-
+      <div class="profile-box">
+        {% if worker.image %}
+        <img src="{{ worker.image.url }}" alt="profile-image"  height=150 width=150 class="profile">
+        {% else %}
+        <img src="/media/images/default-avatar.png" alt="profile-image" height=150 width=150 class="profile">
+        {% endif %}
+        <div class="middle">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="text"><a class="fa fa-edit">{{profile_img_form}}</a><button class="btn btn-outline-info" type="submit">Update</button></div>
+          </form>
         </div>
+      </div>
 
-      </form>
         <br>
 
     <div class="row">
