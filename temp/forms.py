@@ -47,8 +47,8 @@ class ProfileImageForm(forms.ModelForm):
     class Meta:
         model = Worker
         fields = ['image']
+        labels = {'image': ''}
         '''
-        labels = {'image': 'Chose image'}
         widgets = {'image':forms.FileInput(
         attrs={'style':'display: none;','class':'form-control', 'required': False}
         )}

@@ -16,7 +16,7 @@
         <div class="middle">
           <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="text"><a class="fa fa-edit">{{cover_img_form}}</a><button class="btn btn-outline-info" type="submit">Update</button></div>
+            <div class="text">{{cover_img_form}} <button class="btn btn-info" type="submit">Update</button></div>
           </form>
         </div>
       </div>
@@ -31,7 +31,7 @@
           <div class="middle">
             <form method="post" enctype="multipart/form-data">
               {% csrf_token %}
-              <div class="text"><a class="fa fa-edit">{{profile_img_form}}</a><button class="btn btn-outline-info" type="submit">Update</button></div>
+              <div class="text">{{profile_img_form}} <button class="btn btn-info" type="submit">Update</button></div>
             </form>
           </div>
         </div>
