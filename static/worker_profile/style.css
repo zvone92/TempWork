@@ -30,8 +30,8 @@
   transition: .5s ease;
   opacity: 0;
   position: absolute;
-  top: 10%;
-  left: 85%;
+  top: 15%;
+  left: 80%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
@@ -57,15 +57,10 @@
   color: white;
 }
 
-
-
-
-/*new*/
 .worker-profile .profile-box {
   top: -60px;
   left: 15%;
   max-width: 140px;
-
 }
 
 .worker-profile .profile {
@@ -82,7 +77,6 @@
   backface-visibility: hidden;
 
 }
-
 
 /* profile image overlay*/
 
@@ -116,15 +110,6 @@
   background: #212529b8;
   color: white;
 }
-
-
-
-
-
-
-
-
-
 
 .worker-profile .file {
     position: relative;
