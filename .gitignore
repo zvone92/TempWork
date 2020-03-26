@@ -1,0 +1,12 @@
+
+# Created by https://www.gitignore.io/api/django,python,windows
+# Edit at https://www.gitignore.io/?templates=django,python,windows
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+/media
+/static

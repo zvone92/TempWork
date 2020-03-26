@@ -3,11 +3,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Conversation, Message
 from django.db.models import Q
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .forms import SendMessageForm
 
 
-
+@login_required
 def messages(request, recipient_id=None):
     # current user
     user = request.user
