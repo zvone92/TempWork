@@ -27,7 +27,7 @@ def home(request):
                 'workers': workers,
                 'inbox': inbox
     }
-    return render(request, 'temp/home.html', context)
+    return render(request, 'temp/test-home.html', context)
 
 
 @login_required
@@ -47,10 +47,10 @@ def worker_profile(request):
 
     context = { 'worker': worker,
                 'profile_img_form': profile_img_form,
-                'cover_img_form': cover_img_form,                
+                'cover_img_form': cover_img_form,
     }
 
-    return render(request, 'temp/worker_profile.html', context)
+    return render(request, 'temp/test-worker_profile.html', context)
 
 
 @login_required
@@ -62,7 +62,7 @@ def worker_details(request, worker_id, slug):
     context = {
         'worker': worker,
     }
-    return render(request, 'temp/worker_details.html', context)
+    return render(request, 'temp/test-worker_details.html', context)
 
 
 @login_required

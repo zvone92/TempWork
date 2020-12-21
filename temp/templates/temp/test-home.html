@@ -1,0 +1,70 @@
+{% extends 'test-base.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="banner">
+  <div class="banner-text">
+    <h2 class="custom-title">Find worker for your buissnes</h2>
+    <h3 class="custom-title">Or make your own worker profile to start earning</h3>
+    <div class="btn-holder">
+      {% if request.user.worker_set.count > 0 %}
+      <!-- if user already has a worker profile -->
+      <a href="{% url 'worker_profile' %}"><button class="banner-btn">Work Profile</button></a>
+      {% else %}
+      <!-- create profile -->
+      <a href="{% url 'create_worker' %}"><button class="banner-btn">Work</button></a>
+      {% endif %}
+      <a href="#find-worker"><button class="banner-btn blank-btn">Find Worker</button></a>
+    </div>
+  </div>
+  <div class="banner-img">
+    <img src="{% static 'workers.jpg' %}" alt="workers">
+  </div>
+</div>
+<div id="find-worker" class="search-box">
+  <form class="" action="{% url 'home' %}">
+    <input id="search-input" type="search" placeholder="Pretraži ključnu riječ..." name='q'>
+    <button type="submit" name="button">
+      <i class="fa fa-search"></i>
+    </button>
+  </form>
+</div>
+<div id="content">
+  <main>
+    <!-- wrapper place -->
+    <div class="wrapper">
+
+      {% for worker in workers %}
+      <div class="profile-card" onclick="window.location='{{ worker.get_absolute_url }}';">
+
+        {% if worker.cover %}
+        <div class="card-cover-img">
+          <img src="{{ worker.cover.url }}" alt="card cover image">
+        </div>
+        {% else %}
+        <div class="card-cover-img">
+          <img src="https://images.pexels.com/photos/877695/pexels-photo-877695.jpeg?auto=compress&cs=tinysrgb&w=1700" alt="card cover image">
+        </div>
+        {% endif %}
+        <div class="card-text">
+          {% if worker.image %}
+          <img class="profile-img" src="{{ worker.image.url }}" alt="profile-image" >
+          {% else %}
+          <img class="profile-img" src="/media/images/default-avatar.png" alt="profile-image">
+          {% endif %}
+          <small> {{ worker.name }}</small>
+          <p>{{ worker.skill  }}</p>
+          <p>
+            {{ worker.summary }}...
+          </p>
+        </div>
+      </div>
+      {% empty %}
+      <h3>No workers found by "{{ request.GET.q }}"</h3>
+      {% endfor %}
+    </div>
+  </main>
+</div>
+
+{% endblock %}

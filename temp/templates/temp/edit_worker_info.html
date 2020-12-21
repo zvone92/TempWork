@@ -1,9 +1,72 @@
-{% extends 'base.html' %}
+{% extends 'test-base.html' %}
 
 {% load crispy_forms_tags %}
 
 {% block content %}
 
+
+<!-- NEW HTML -->
+<div class="wrapper">
+     <!-- <h1 class="custom-text">Edit Worker Profile</h1>  -->
+     <div class="bg-form">
+         <form class="worker-form" name="obrazac" method="post" enctype="multipart/form-data">
+           {% csrf_token %}
+           <div class="input-box">
+             <p>
+               <label for="Name">Name:</label>
+               {{ form.name }}
+             </p>
+             <p>
+               <label for="Last name">Last name: </label>
+               {{ form.lastname }}
+             </p>
+             <p>
+               <label for="text">Adresa: </label>
+               <input type="text" name="text" id="text" size="30" placeholder="npr. Horvatova 23, 21000 Split">
+             </p>
+             <p>About you:</p>
+             <p>
+               {{ form.details }}
+             </p>
+           </div>
+           <div class="input-box">
+             <p>
+               <label for="ime">Date of birth:</label>
+               {{ form.dob }}
+             </p>
+             <p>
+               <label for="Phone">Phone (required): </label>
+                 {{ form.phone|as_crispy_field }}
+             </p>
+             <p>
+               <label for="text">Your Skill: </label>
+               {{ form.skill|as_crispy_field }}
+             </p>
+             <p>Hour rate:</p>
+             <p>
+               {{ form.hourly_rate|as_crispy_field }}
+             </p>
+             <p>
+               <label for="terms">Publish or draft to update:</label>
+               {{ form.status}}
+             </p>
+           </div>
+         <div class="btn-box">
+           <button class="btn-contact" type="reset">RESET</button>
+           <button class="btn-contact" type="submit">UPDATE</button>
+         </div>
+       </form>
+ </div>
+</div>
+
+{% endblock %}
+<!-- END NEW -->
+
+
+
+
+
+<!-- OLD html
 
 <br>
 <div class="container">
@@ -82,4 +145,4 @@
 <br>
 
 
-{% endblock %}
+ END OLD -->

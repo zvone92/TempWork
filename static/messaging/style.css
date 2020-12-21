@@ -1,9 +1,16 @@
 .container{
-  max-width:1500px; margin:auto;
-
+  max-width:1500px;
+  margin:auto;
 }
+
 img {
   max-width:100%;
+}
+
+.inbox_msg {
+  border: 1px solid #c4c4c4;
+  clear: both;
+  overflow: hidden;
 }
 
 .inbox_people {
@@ -13,15 +20,9 @@ img {
   width: 40%; border-right:1px solid #c4c4c4;
 }
 
-.inbox_msg {
-  border: 1px solid #c4c4c4;
-  clear: both;
-  overflow: hidden;
-}
 .top_spac{
    margin: 20px 0 0;
  }
-
 
 .recent_heading {
   float: left; width:40%;

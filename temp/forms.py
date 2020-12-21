@@ -48,11 +48,11 @@ class ProfileImageForm(forms.ModelForm):
         model = Worker
         fields = ['image']
         labels = {'image': ''}
-        '''
+
         widgets = {'image':forms.FileInput(
-        attrs={'style':'display: none;','class':'form-control', 'required': False}
+        attrs={'class':'form-control', 'required': False}
         )}
-        '''
+
 
 
 class CoverImageForm(forms.ModelForm):

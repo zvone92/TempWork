@@ -4,7 +4,6 @@
 {% block content %}
 
 
-
 <div class="container">
   <div class="messaging">
     <div class="inbox_msg">
@@ -75,7 +74,11 @@
 
                 {% empty %}
                     {% if new_recipient %}
-                    <div class="chat_img" > <img src="{{  new_recipient.profile.image.url }}" alt="sunil"> </div>
+                      {% if new_recipient.profile.image %}
+                        <div class="chat_img" > <img src="{{  new_recipient.profile.image.url }}" alt="sunil"> </div>
+                      {% else %}
+                        <img class="chat_img" src="/media/images/default-avatar.png" alt="avatar-img">
+                      {% endif %}
                     <p>Start conversation with {{new_recipient.username}}</p>
                     {% else %}
                     <p>No messages to display </p>
@@ -109,5 +112,8 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+
 
               {% endblock %}

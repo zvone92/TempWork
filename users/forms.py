@@ -18,9 +18,14 @@ class ProfileEditForm(forms.ModelForm):
         model = Profile
         exclude = ('user', )
 
+        widgets = {'image':forms.FileInput(
+         attrs={'required': False}
+        )}
+
 
 class UserEditForm(forms.ModelForm):
 
     class Meta:
         model = User
         fields = ['username', 'email']
+        labels = {'username': '','email': ''}

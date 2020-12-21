@@ -27,7 +27,7 @@ class Worker(models.Model):
     phone    = PhoneNumberField(null=True, blank=True, unique=True)
     created  = models.DateTimeField(auto_now_add=True)
     status   = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
-    hourly_rate = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
+    hourly_rate = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00')) # set default to 10 euro 
 
 
     def summary(self):

@@ -48,7 +48,7 @@
       </li>
       {% endif %}
     </ul>
-    <a href="{% url 'messages' %}" class="notification">
+    <a href="{% url 'conversation_list' %}" class="notification">
       <img src="{% static 'messaging/envelope.png' %}"  height=30 width=30 >
       {% if inbox > 0 %}
         <span class="badge">{{inbox}}</span>

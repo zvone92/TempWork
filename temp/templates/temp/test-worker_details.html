@@ -1,0 +1,55 @@
+{% extends 'test-base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div id="content">
+    <main>
+    <!-- wrapper place -->
+      <div class="wrapper">
+        <!-- Worker profile -->
+        <div class="worker-profile">
+          {% if worker.cover %}
+          <div class="profile-cover-img" style="background-image: url('{{ worker.cover.url }}');"></div>
+          {% else %}
+          <div class="profile-cover-img" style="background-image: url(https://images.pexels.com/photos/877695/pexels-photo-877695.jpeg?auto=compress&cs=tinysrgb&w=1700);"></div>
+          {% endif %}
+          <div class="profile-text">
+            {% if worker.image %}
+            <img class="profile-img" src="{{ worker.image.url }}" alt="card-profile-img" >
+            {% else %}
+            <img class="profile-img" src="/media/images/default-avatar.png" alt="profile-image">
+            {% endif %}
+            <div class="info">
+              <div class="description">
+                <h1>{{worker.name}} {{worker.lastname}}</h1>
+                <h4><i class="fa fa-map-marker"></i> New York City</h4>
+                <h3>{{ worker.skill  }}</h3>
+                <ul class="skills">
+                  <li>Graphic Design</li>
+                  <li>Sketching</li>
+                  <li>Photoshop</li>
+                </ul>
+                <h5>Hourly rate: 10 <i class="fa fa-dollar"></i></h5>
+              </div>
+              <div class="contact">
+                <div class="btn-holder">
+                  <a href="{% url 'message_box' worker.user.id %}"><button class="profile-btn-1"><i class="fa fa-envelope"></i> Message</button></a>
+                  <a href="#"><button class="profile-btn-2"><i class="fa fa-phone"></i> Call</button></a>
+                  {{worker.phone}}
+                </div>
+              </div>
+            </div>
+            <div class="about">
+              <h3>About me</h3>
+              <p>
+                {{ worker.details }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+{% endblock %}

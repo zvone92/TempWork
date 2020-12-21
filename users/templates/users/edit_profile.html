@@ -1,39 +1,45 @@
-{% extends 'base.html' %}
-
+{% extends 'test-base.html' %}
 
 {% load crispy_forms_tags %}
 
 {% block content %}
 
-<div class="row justify-content-center">
-  <div class="content-section" >
-
-    <form method="post" enctype="multipart/form-data">
+<div class="wrapper">
+  <!-- edit user -->
+  <form class="user-box" method="post" enctype="multipart/form-data">
       {% csrf_token %}
-    <div class="preview text-center">
-        <legend class="border-bottom mb-4">User Profile</legend>
+      <div class="user-img-holder">
         {% if request.user.profile.image %}
-          <img class="preview-img" src="{{ request.user.profile.image.url }}" alt="Preview Image" width="200" height="200"/>
+          <img src="{{ request.user.profile.image.url }}" alt="Preview Image"/>
         {% else %}
-        <img class="preview-img" src="/media/images/default-avatar.png" alt="Preview Image" width="200" height="200"/>
+          <img src="/media/images/default-avatar.png" alt="Preview Image"/>
         {% endif %}
 
         <div class="browse-button">
-            <i class="fa fa-pencil-alt"></i>
-             {{ profile_form.image }}
+            <i class="fa fa-pencil"> Update image:</i>
+             {{ profile_form.image}}
        </div>
-      <span class="Error"></span>
-    </div>
-     <hr>
-      <fieldset class="form-group">
-         {{ user_form.username|as_crispy_field }}
-         {{ user_form.email|as_crispy_field }}
-      </fieldset>
-      <div class="form-group">
-        <button class="btn btn-outline-info" type="submit">Save changes</button>
+
       </div>
-    </form>
-  </div>
+      <!-- media query na input da bude 100% za mobile i small desktop -->
+      <div class="input-box">
+          <p>
+            <label for="Username">User Name:</label>
+            {{ user_form.username|as_crispy_field }}
+          </p>
+          <p>
+            <label for="Email">E-mail (required):</label>
+            {{ user_form.email|as_crispy_field }}
+          </p>
+      </div>
+
+      <div class="btn-box">
+        <button class="btn-contact" type="reset">RESET</button>
+        <button class="btn-contact" type="submit">SAVE</button>
+     </div>
+
+  </form>
+
 </div>
 
 {% endblock %}
