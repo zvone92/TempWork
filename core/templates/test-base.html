@@ -17,7 +17,6 @@
         <ul class="nav-links">
           <!-- IF USER IS LOGGED -->
           {% if request.user.is_authenticated %}
-
           <!-- show user name and profile picture -->
           <li>
             <div class="user-holder">
@@ -45,8 +44,6 @@
 
           {% else %}
           <!-- LOG IN OR REGISTER-->
-    <!--      <li> <div class="user-holder"></div> <div class="dropdown-content"></div> </li>  for test use only -->
-
           <li>
             <a href="{% url 'login' %}">Log in</a>
           </li>

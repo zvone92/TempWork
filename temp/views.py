@@ -6,13 +6,21 @@ from django.db.models import Q
 from messaging.msg_util import new_messages
 
 
-@login_required
 def home(request):
     '''
     all worker profiles are showing here
     users can search for Workers
     '''
-    workers = Worker.objects.all().exclude(user=request.user)
+    # if user is registered
+    if request.user.is_authenticated:
+        workers = Worker.objects.all().exclude(user=request.user)
+        # checking for new messages, returns integer
+        inbox = new_messages(request.user)
+
+    else:
+        workers = Worker.objects.all()
+        inbox = 0
+
     query   = request.GET.get('q')
     # if there is a search query, find by skill, details or name
     if query:
@@ -20,8 +28,6 @@ def home(request):
         Q(skill__icontains=query)|
         Q(details__icontains=query)|
         Q(name__icontains=query))
-    # checking for new messages, returns integer
-    inbox = new_messages(request.user)
 
     context = {
                 'workers': workers,
