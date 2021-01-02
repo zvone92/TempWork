@@ -20,13 +20,12 @@
           <!-- show user name and profile picture -->
           <li>
             <div class="user-holder">
+              <p>{{ request.user }} </p>
               {% if request.user.profile.image %}
               <img class="user-img" src="{{ request.user.profile.image.url }}" alt="profile-img">
               {% else %}
               <img class="user-img" src="/media/images/default-avatar.png" alt="avatar-img">
               {% endif %}
-              <p>{{ request.user }} </p>
-
               <!-- TODO: DROPDOWN ITEMS -->
               <div class="dropdown-content">
                 {% if request.user.worker_set.count > 0 %}
@@ -41,7 +40,6 @@
               <!-- END -->
             </div>
           </li>
-
           {% else %}
           <!-- LOG IN OR REGISTER-->
           <li>
@@ -51,7 +49,6 @@
             <a href="{% url 'register' %}">Sign up</a>
           </li>
           {% endif %}
-
           <!-- Check for new messages  -->
           <li>
             <div class="notification" onclick="window.location='{% url 'conversation_list' %}';">
@@ -60,15 +57,7 @@
                 <span class="badge">{{inbox}}</span>
               {% endif %}
             </div>
-            <!--
-            <a href="{% url 'conversation_list' %}" class="notification">
-              <img src="{% static 'messaging/envelope.png' %}"  height=20 width=20 style="background-color:orange;">
-              {% if inbox > 0 %}
-                <span class="badge">{{inbox}}</span>
-              {% endif %}
-            </a>
           </li>
-           -->
           <!--
           <li><a href="my-profile.html"><i class="fa fa-user-circle"> My Profile</i></a></li>
           <li><a href="create-worker.html"><i class="fa fa-plus-square"></i> Work</a></li>

@@ -33,7 +33,7 @@ def home(request):
                 'workers': workers,
                 'inbox': inbox
     }
-    return render(request, 'temp/test-home.html', context)
+    return render(request, 'temp/home.html', context)
 
 
 @login_required
@@ -56,7 +56,7 @@ def worker_profile(request):
                 'cover_img_form': cover_img_form,
     }
 
-    return render(request, 'temp/test-worker_profile.html', context)
+    return render(request, 'temp/worker_profile.html', context)
 
 
 @login_required
@@ -68,7 +68,7 @@ def worker_details(request, worker_id, slug):
     context = {
         'worker': worker,
     }
-    return render(request, 'temp/test-worker_details.html', context)
+    return render(request, 'temp/worker_details.html', context)
 
 
 @login_required
@@ -76,6 +76,8 @@ def create_worker(request):
     '''
     creating Worker profile
     '''
+    # TODO: Check if user already has a worker profile( if he does, send him to his profile page )
+
     form = WorkerCreateForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         worker = form.save(commit=False)
