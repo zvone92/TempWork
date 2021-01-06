@@ -4,6 +4,7 @@ from .models import Worker, Profile
 from .forms import WorkerCreateForm, ProfileImageForm, CoverImageForm, EditWorkerInfoForm
 from django.db.models import Q
 from messaging.msg_util import new_messages
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def home(request):
@@ -76,7 +77,13 @@ def create_worker(request):
     '''
     creating Worker profile
     '''
-    # TODO: Check if user already has a worker profile( if he does, send him to his profile page )
+    try:
+        # Check if user already has a profile
+        request.user.worker
+    except ObjectDoesNotExist:
+        pass
+    else:
+        return redirect('worker_profile')
 
     form = WorkerCreateForm(request.POST or None, request.FILES or None)
     if form.is_valid():

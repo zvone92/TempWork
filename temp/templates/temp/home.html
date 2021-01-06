@@ -8,7 +8,7 @@
     <h2 class="custom-title">Find worker for your buissnes</h2>
     <h3 class="custom-title">Or make your own worker profile to start earning</h3>
     <div class="btn-holder">
-      {% if request.user.worker_set.count > 0 %}
+      {% if request.user.worker %}
       <!-- if user already has a worker profile -->
       <a href="{% url 'worker_profile' %}"><button class="banner-btn">Work Profile</button></a>
       {% else %}

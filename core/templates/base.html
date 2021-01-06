@@ -28,7 +28,7 @@
               {% endif %}
               <!-- TODO: DROPDOWN ITEMS -->
               <div class="dropdown-content">
-                {% if request.user.worker_set.count > 0 %}
+                {% if request.user.worker %}
                 <a href="{% url 'worker_profile' %}">Work Profile</a>
                 {% else %}
                 <a href="{% url 'create_worker' %}">Create your ad !</a>
