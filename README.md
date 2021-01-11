@@ -1,6 +1,6 @@
 # TempWork
 ---
-## TempWork is Django web application made for people that are looking for temporary workers or jobs.
+## TempWork is worker/job hunting web application where users can find job or find workers for their business.
 ---
 ## How it works?
 * If user is looking to find a job, he can register and make a profile page where he can list all of skills and information about himself, including profile image and cover image.
