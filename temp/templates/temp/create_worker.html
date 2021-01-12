@@ -19,10 +19,10 @@
                 {{ form.lastname }}
               </p>
               <p>
-                <label for="text">Adresa: </label>
+                <label for="text">Adress: (Not required)</label>
                 <input type="text" name="text" id="text" size="30" placeholder="npr. Horvatova 23, 21000 Split">
               </p>
-              <p>About you:</p>
+              <p>About you: (Not required)</p>
               <p>
                 {{ form.details }}
               </p>
@@ -33,14 +33,14 @@
                 {{ form.dob }}
               </p>
               <p>
-                <label for="Phone">Phone (required): </label>
+                <label for="Phone">Phone (Not required): </label>
                   {{ form.phone|as_crispy_field }}
               </p>
               <p>
                 <label for="text">Your Skill: </label>
                 {{ form.skill|as_crispy_field }}
               </p>
-              <p>Hour rate:</p>
+              <p>Hour rate: (Not required)</p>
               <p>
                 {{ form.hourly_rate|as_crispy_field }}
               </p>
