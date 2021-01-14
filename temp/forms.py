@@ -50,7 +50,7 @@ class ProfileImageForm(forms.ModelForm):
         labels = {'image': ''}
 
         widgets = {'image':forms.FileInput(
-        attrs={'class':'form-control', 'required': False}
+        attrs={'required': False}
         )}
 
 
@@ -60,3 +60,8 @@ class CoverImageForm(forms.ModelForm):
     class Meta:
         model = Worker
         fields = ['cover']
+        labels = {'cover': ''}
+
+        widgets = {'cover':forms.FileInput(
+        attrs={'required': False}
+        )}

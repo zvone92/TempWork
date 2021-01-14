@@ -15,10 +15,10 @@
             <div class="update-cover">
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
+                 <i class="fa fa-image"> Update cover:</i>
                 <div class="text">{{cover_img_form}} <button class="btn btn-info" type="submit">Update</button></div>
               </form>
             </div>
-            <!-- ---- -->
           </div>
           {% else %}
           <div class="profile-cover-img" style="background-image: url(https://images.pexels.com/photos/877695/pexels-photo-877695.jpeg?auto=compress&cs=tinysrgb&w=1700);">
@@ -26,13 +26,11 @@
             <div class="update-cover">
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="text">{{cover_img_form}} <button class="btn btn-info" type="submit">Update</button></div>
+                <div class="text">{{cover_img_form}} <button class="btn btn-info" type="submit">Update Image</button></div>
               </form>
             </div>
-            <!-- ---- -->
           </div>
           {% endif %}
-
           <div class="profile-text">
             {% if worker.image %}
             <img class="profile-img" src="{{ worker.image.url }}" alt="card-profile-img" >
@@ -43,15 +41,14 @@
             <div class="update-profile-img">
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
+                <i class="fa fa-image"> Update image:</i>
                 <div class="text">{{profile_img_form}} <button class="btn btn-info" type="submit">Update</button></div>
               </form>
             </div>
-            <!-- ---- -->
             <!-- edit info  form-->
             <div class="update-info">
-                <a href="{% url 'edit_worker_info' %}"> Edit info <i class="fa fa-edit"></i></a>
+                <a href="{% url 'edit_worker_info' %}"><button class="profile-btn-2"> Update info <i class="fa fa-edit"></i></button></a>
             </div>
-            <!-- ---- -->
             <div class="info">
               <div class="description">
                 <h1>{{worker.name}} {{worker.lastname}}</h1>
@@ -66,7 +63,7 @@
               </div>
               <div class="contact">
                 <div class="btn-holder">
-                  <a href="{% url 'message_box' worker.user.id %}"><button class="profile-btn-1"><i class="fa fa-envelope"></i> Message</button></a>
+                  <a href="#"><button class="profile-btn-1"><i class="fa fa-envelope"></i> Message</button></a>
                   <a href="#"><button class="profile-btn-2"><i class="fa fa-phone"></i> Call</button></a>
                   {{worker.phone}}
                 </div>
