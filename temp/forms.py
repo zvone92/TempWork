@@ -18,8 +18,13 @@ class WorkerCreateForm(forms.ModelForm):
 
     class Meta:
         model = Worker
-        fields = ['name', 'lastname', 'dob', 'skill', 'details', 'status', 'image', 'hourly_rate', 'phone']
-        labels = {'name': '', 'lastname': '', 'skill': '', 'details': '', 'status': '', 'hourly_rate': ''}
+
+        widgets = {
+            'location': forms.Textarea(attrs={'placeholder': 'eg. 342 Stone Street, New York'}),
+        }
+
+        fields = ['name', 'lastname', 'dob', 'skill', 'details', 'status', 'location', 'image', 'hourly_rate', 'phone']
+        labels = {'name': '', 'lastname': '', 'skill': '', 'details': '', 'status': '','location': '', 'hourly_rate': ''}
 
 
 
@@ -37,8 +42,14 @@ class EditWorkerInfoForm(forms.ModelForm):
 
         class Meta:
             model = Worker
-            exclude = ('user', 'image', 'cover', 'slug', 'created', 'medals', )
+
+            widgets = {
+                'location': forms.Textarea(attrs={'placeholder': 'eg. 342 Stone Street, New York'}),
+            }
+
+            exclude = ('user', 'image', 'cover', 'slug', 'created', )
             labels = {'name': '', 'lastname': '', 'skill': '', 'details': '', 'status': '', 'hourly_rate': ''}
+
 
 
 
