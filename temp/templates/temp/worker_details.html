@@ -35,8 +35,7 @@
               <div class="contact">
                 <div class="btn-holder">
                   <a href="{% url 'message_box' worker.user.id %}"><button class="profile-btn-1"><i class="fa fa-envelope"></i> Message</button></a>
-                  <a href="#"><button class="profile-btn-2"><i class="fa fa-phone"></i> Call</button></a>
-                  {{worker.phone}}
+                  <a href="tel:{{worker.phone}}"><button class="profile-btn-2"><i class="fa fa-phone"></i> Call</button></a>        
                 </div>
               </div>
             </div>
