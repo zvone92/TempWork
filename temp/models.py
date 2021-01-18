@@ -33,9 +33,6 @@ class Worker(models.Model):
     def summary(self):
         return self.details[:100]
 
-    def total_medals(self):
-        return self.medals.count()
-
     def __str__(self):
         return self.name
 
