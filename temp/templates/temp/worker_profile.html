@@ -15,7 +15,7 @@
             <div class="update-cover">
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                 <i class="fa fa-image"> Update cover:</i>
+                 <i class="fa fa-pencil"> Update cover:</i>
                 <div class="text">{{cover_img_form}} <button class="btn btn-info" type="submit">Update</button></div>
               </form>
             </div>
@@ -41,7 +41,7 @@
             <div class="update-profile-img">
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <i class="fa fa-image"> Update image:</i>
+                <i class="fa fa-pencil"> Update image:</i>
                 <div class="text">{{profile_img_form}} <button class="btn btn-info" type="submit">Update</button></div>
               </form>
             </div>
@@ -52,7 +52,7 @@
             <div class="info">
               <div class="description">
                 <h1>{{worker.name}} {{worker.lastname}}</h1>
-                <h4><i class="fa fa-map-marker"></i> {{worker.location}}</h4>      
+                <h4><i class="fa fa-map-marker"></i> {{worker.location}}</h4>
                 <ul class="skills">
                   <li>{{ worker.skill}}</li>
                 </ul>

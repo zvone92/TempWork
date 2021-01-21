@@ -10,13 +10,16 @@
       <!-- wrapper is outline -->
       <div class="conversation-holder">
         <div class="conversation-header">
-          <form class="" action="index.html" method="post">
-            <input id="search-input" type="text" placeholder="Pretraži ključnu riječ...">
-            <button type="submit" name="button">
-              <i class="fa fa-search"></i>
-            </button>
-          </form>
-          <p>RECENT CONVERSATIONS</p>
+          <div id="find-worker" class="search-box">
+            <form class="" action="{% url 'conversation_list' %}">
+              <input id="search-conversation" type="search" placeholder="Find recent conversation..." name='q'>
+              <button type="submit" name="button">
+                <i class="fa fa-search"></i>
+              </button>
+            </form>
+          </div>
+          <!-- <p>RECENT CONVERSATIONS</p>  -->
+
         </div>
         <div class="conversation-box">
 

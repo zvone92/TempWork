@@ -6,15 +6,23 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .forms import SendMessageForm
+from django.core.exceptions import ObjectDoesNotExist
 
 
 @login_required
 def conversation_list(request):
     # current user
     user = request.user
+    query   = request.GET.get('q')
 
     # all conversations that current user is participating, starting from last one
     recent_conversations = Conversation.objects.filter(participants=user).order_by('-pk')
+
+    # if there is a search query, find by user
+    if query:
+        correspondent = User.objects.filter(username__icontains=query).exclude(username=user.username)
+        recent_conversations = recent_conversations.filter(participants__in=correspondent)
+            #return redirect('conversation_list')
 
     # if there are no recent conversations to display
     if not recent_conversations:
