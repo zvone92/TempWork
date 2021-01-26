@@ -7,7 +7,9 @@
 html{
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
 }
+
 body{margin: 0;}
 
 a {text-decoration: none;}
@@ -35,6 +37,7 @@ header{
    margin-left: 1em;
    color: #494c5ff2;
 }
+
 
 nav .nav-links{
   display: flex;
@@ -112,7 +115,7 @@ nav .nav-links li a{
   position: absolute;
   top: -10px;
   right: -10px;
-  padding: 5px 10px;
+  padding: 2px 10px;
   border-radius: 50%;
   font-size: 1em;
   font-weight: bolder;
@@ -251,19 +254,27 @@ nav .nav-links li a{
   align-items: center;
 }
 
-.search-box #search-input[type=text] {
+.search-box #search-input[type=search] {
   width: 400px;
   height: 40px;
   border: none;
   outline: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  -o-box-shadow: 0 0 10px rgba(0,0,0,0.3);
   border-radius: 15px;
+  padding: 6px;
+  margin-top: 2px;
+  font-size: 17px;
+}
+
+.search-box #search-input[type=search]:hover {
+  outline: none;
   box-shadow: 0 0 10px rgba(0,0,0,0.6);
   -moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
   -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
   -o-box-shadow: 0 0 10px rgba(0,0,0,0.6);
-  padding: 6px;
-  margin-top: 2px;
-  font-size: 17px;
 }
 
 .search-box button {
@@ -299,7 +310,7 @@ nav .nav-links li a{
   flex-direction: column;
   flex-basis: 300px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin: 2em 0.5em 0;
+  margin: 2em 0.5em 3em;
   cursor: pointer;
 }
 
@@ -312,8 +323,14 @@ nav .nav-links li a{
   height: 100%;
   position: relative;
   background-color: #fff;
-
+  color: #425569fa;
+  text-align: center;
 }
+
+.card-text h3{
+  text-align: center;
+}
+
 
 .profile-card .card-cover-img{
   height: 150px;
@@ -324,12 +341,13 @@ nav .nav-links li a{
 }
 
 .profile-card .profile-img{
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   position: absolute;
-  top: -40px;
-  left: 20px;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
   border: 4px solid rgba(255, 255, 255, 1);
 }
 
@@ -421,6 +439,21 @@ nav .nav-links li a{
   cursor: pointer;
 }
 
+.input-box #id_location{
+  border-radius: 4px;
+  padding: 6px;
+  margin-top: 2px;
+  font-size: 17px;
+}
+
+.input-box #id_location{
+  height: 35px;
+  border-radius: 4px;
+  padding: 6px;
+  margin-top: 2px;
+  font-size: 17px;
+}
+
 
 form p{
 	text-align:left;
@@ -480,6 +513,21 @@ textarea{
   align-items: center;
   overflow-y: auto;
   padding: 30px;
+}
+
+.search-box #search-conversation[type=search] {
+  width: 350px;
+  height: 35px;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  -o-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  border-radius: 15px;
+  padding: 6px;
+  margin-top: 2px;
+  font-size: 17px;
 }
 
 .conversation-box p{
@@ -630,7 +678,6 @@ textarea{
 }
 
 .profile-cover-img{
-  /* replaced inline css */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -644,6 +691,7 @@ textarea{
   position: relative;
   background-color: #fff;
   border-radius: 0 0 1em 1em;
+  color: #425569fa;
 }
 
 .profile-text .profile-img{
@@ -723,14 +771,24 @@ textarea{
   position: relative;
 }
 
+
 #my-profile .profile-cover-img .update-cover{
   position: absolute;
   top: 20px;
   right: 20px;
   opacity: 0;
+  padding: 5px;
+  background-color: #7b796c96;
+  border-radius: 10px;
+  color: antiquewhite;
 }
 
 #my-profile .profile-cover-img:hover .update-cover{opacity: 1;}
+
+#my-profile .text{
+  border-radius: 5px;
+  padding: 5px;
+}
 
 
 #my-profile .update-profile-img{
@@ -738,14 +796,37 @@ textarea{
   position: absolute;
   top: 10px;
   left: 25%;
+  padding: 2px;
+  background-color: #7b796c96;
+  border-radius: 10px;
+  color: antiquewhite;
 }
 
 #my-profile .update-info{
-  position: absolute;
-  top: 3px;
-  right: 20px;
-  color: grey;
+  padding: 30px 0px 0px 20px;
 }
+
+#my-profile .update-info button{
+  margin: 10px;
+  width: 8em;
+  height: 1.5em;
+  border: 1px solid #000;
+  background-color:  #fff;
+  color: grey;
+  outline: none;
+  border-radius:50px;
+
+  cursor: pointer;
+  transition: transform .2s;
+  font-size: 1em;
+}
+
+#my-profile .update-info button:hover{
+  border: none;
+  background-color:  #86898ce8;
+  color: white;
+}
+
 
 #my-profile .profile-text:hover .update-profile-img{opacity: 1;}
 
@@ -758,7 +839,7 @@ textarea{
   border-radius: 15px;
   width: 700px;
   background-color: #fff;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-wrap: wrap;
 }
@@ -843,31 +924,29 @@ textarea{
   align-self: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* footer */
 footer{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
+  background-color: #fff;
 }
+
+footer p{
+  color: #425569fa;
+}
+
+footer .footer-logo{
+  width: 80px;
+  height: 80px;
+}
+
 
 .left-foot, .middle-foot, .right-foot{
   flex-basis: 450px;
   padding: 1em;
+  text-align: center;
 }
 
 
@@ -915,7 +994,7 @@ footer{
   .wrapper{padding: 1em;}
   .banner-text{order: 1;}
 
-  .search-box #search-input[type=text] {width: 250px;}
+  .search-box #search-input[type=search] {width: 250px;}
 
   /* message-box.html */
   .conversation-holder{width: 100%;}

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404 
 from .models import Conversation, Message
 from django.db.models import Q
 from django.contrib.auth.models import User
