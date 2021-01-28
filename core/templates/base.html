@@ -79,10 +79,15 @@
     {% endblock %}
     <footer>
       <div class="left-foot">
-        <h2 id="logo">TempWork </h2>
+        <a href="{% url 'home' %}">
+          <h3 id="logo">TempWork </h3>
+        </a>
       </div>
       <div class="middle-foot">
-        <p><b> Lorem ipsum dolor sit amet, consectetur adipisicing elit</b></p>
+        <blockquote>
+          <q>Amateurs sit and wait for inspiration, the rest of us just get up and go to work </q>
+          <cite>Stephen King</cite>
+        </blockquote>
         <p>
           &copy; Copyright 2020 All rights reserved
         </p>

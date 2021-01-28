@@ -5,6 +5,7 @@ from .forms import WorkerCreateForm, ProfileImageForm, CoverImageForm, EditWorke
 from django.db.models import Q
 from messaging.msg_util import new_messages
 from django.core.exceptions import ObjectDoesNotExist
+from django.urls import reverse
 
 
 def home(request):
@@ -30,11 +31,42 @@ def home(request):
         Q(details__icontains=query)|
         Q(name__icontains=query))
 
+
     context = {
                 'workers': workers,
                 'inbox': inbox
     }
     return render(request, 'temp/home.html', context)
+
+
+
+def search(request):
+    # if user is registered
+    if request.user.is_authenticated:
+        workers = Worker.objects.all().exclude(user=request.user)
+        # checking for new messages, returns integer
+        inbox = new_messages(request.user)
+
+    else:
+        workers = Worker.objects.all()
+        inbox = 0
+
+    query   = request.GET.get('q')
+    # if there is a search query, find by skill, details or name
+    if query:
+        workers  = Worker.objects.filter(
+        Q(skill__icontains=query)|
+        Q(details__icontains=query)|
+        Q(name__icontains=query))
+
+
+    context = {
+                'workers': workers,
+                'inbox': inbox
+    }
+
+    return render(request, 'temp/search.html', context)
+
 
 
 @login_required
