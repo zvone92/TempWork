@@ -15,22 +15,13 @@ def home(request):
     '''
     # if user is registered
     if request.user.is_authenticated:
-        workers = Worker.objects.all().exclude(user=request.user)
+        workers = Worker.objects.all().exclude(user=request.user).order_by('-pk')[0:9] 
         # checking for new messages, returns integer
         inbox = new_messages(request.user)
 
     else:
-        workers = Worker.objects.all()
+        workers = Worker.objects.all().order_by('-pk')[0:9]
         inbox = 0
-
-    query   = request.GET.get('q')
-    # if there is a search query, find by skill, details or name
-    if query:
-        workers  = Worker.objects.filter(
-        Q(skill__icontains=query)|
-        Q(details__icontains=query)|
-        Q(name__icontains=query))
-
 
     context = {
                 'workers': workers,
