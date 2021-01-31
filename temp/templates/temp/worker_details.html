@@ -23,7 +23,11 @@
             <div class="info">
               <div class="description">
                 <h1>{{worker.name}} {{worker.lastname}}</h1>
-                <h4><i class="fa fa-map-marker"></i> {{worker.location}}</h4>
+                {% if worker.location %}
+                <h4><i class="fa fa-map-marker"></i> {{worker.location}} </h4>
+                {% else %}
+                <h4><i class="fa fa-map-marker"></i> Address not provided </h4>
+                {% endif %}
                 <ul class="skills">
                   <li>{{ worker.skill}}</li>
                 </ul>

@@ -5,6 +5,7 @@
 
 <div id="find-worker" class="search-box">
   <form class="" action="{% url 'search' %}">
+    {% csrf_token %}
     <input id="search-input" type="search" placeholder="Search by keywords..." name='q'>
     <button type="submit" name="button">
       <i class="fa fa-search"></i>

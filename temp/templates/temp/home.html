@@ -24,6 +24,7 @@
 </div>
 <div id="find-worker" class="search-box">
   <form class="" action="{% url 'search' %}">
+    {% csrf_token %}
     <input id="search-input" type="search" placeholder="Search by keywords..." name='q'>
     <button type="submit" name="button">
       <i class="fa fa-search"></i>
@@ -52,8 +53,15 @@
           {% else %}
           <img class="profile-img" src="/media/images/default-avatar.png" alt="profile-image">
           {% endif %}
-          <h3> {{ worker.name }}</h3>
-          <h4>{{ worker.skill  }}</h4>
+          <h3> {{ worker.name }} {{ worker.lastname }}</h3>
+          <ul class="skills">
+            <li>{{ worker.skill}}</li>
+          </ul>
+          {% if worker.location %}
+          <h5><i class="fa fa-map-marker"></i> {{worker.location}} </h5>
+          {% else %}
+          <h5><i class="fa fa-map-marker"></i> Address not provided </h5>
+          {% endif %}
           <p>
             {{ worker.summary }}...
           </p>
