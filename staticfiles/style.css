@@ -299,7 +299,7 @@ nav .nav-links li a{
   justify-content: center;
   padding: 2em;
   flex-wrap: wrap;
-  background-color: #ece7f378;
+  background-color: #fff;
 }
 
 
@@ -329,6 +329,10 @@ nav .nav-links li a{
 
 .card-text h3{
   text-align: center;
+}
+
+.card-text .skills{
+  justify-content: center;
 }
 
 
@@ -930,6 +934,7 @@ footer{
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
+  font-size: 14px;
   background-color: #fff;
 }
 

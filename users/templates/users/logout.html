@@ -5,10 +5,13 @@
 
 <div class="wrapper">
   <h1>You have been loged out</h1>
-  <div class="border-top pt-3">
-    <small class="text-muted">
-      <a class="ml-2" href="{% url 'login' %}">Log in agin? </a>
-    </small>
+  <div class="search-box">
+      <a href="{% url 'login' %}">
+        <button class="banner-btn">
+          Log in agin?
+        </button>
+     </a>
+    </div>
   </div>
 </div>
 
