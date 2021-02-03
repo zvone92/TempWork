@@ -22,7 +22,7 @@
                 <label for="text">Location: <small>(Not required)</small></label>
                 {{ form.location }}
               </p>
-              <p>About you: (Not required)</p>
+              <p>About you: <small>(Not required)</small></p>
               <p>
                 {{ form.details }}
               </p>
@@ -33,14 +33,14 @@
                 {{ form.dob }}
               </p>
               <p>
-                <label for="Phone">Phone (Not required): </label>
+                <label for="Phone">Phone: <small> (Not required) </small></label>
                   {{ form.phone|as_crispy_field }}
               </p>
               <p>
                 <label for="text">Your Skill: </label>
                 {{ form.skill|as_crispy_field }}
               </p>
-              <p>Hour rate: (Not required)</p>
+              <p>Hour rate:<small>(Not required)</small> </p>
               <p>
                 {{ form.hourly_rate|as_crispy_field }}
               </p>
