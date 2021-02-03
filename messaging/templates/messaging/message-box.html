@@ -39,9 +39,10 @@
           </div>
           {% endif %}
         {% empty %}
-
-        <!-- New recipient logic ??? -->
-
+        <div class="empty-conversation">
+          <h3>Say hello to {{ recipient }}.</h3>
+          <img src="{% static 'images/conversation.png' %}">
+        </div>
         {% endfor %}
         </div>
         <div class="conversation-bottom">

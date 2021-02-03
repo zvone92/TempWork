@@ -40,13 +40,15 @@
           </div>
 
           {% empty %}
-          <h3>There is no previous conversations.</h3>
-
+          <div class="empty-conversation">
+            <h3>There is no previous conversations.</h3>
+            <img src="{% static 'images/conversation.png' %}">
+          </div>
           {% endfor %}
 
         </div>
         <div class="conversation-bottom">
-          <p>RECENT CONVERSATIONS</p>
+          <p>Recent conversations</p>
         </div>
       </div>
     </div>
