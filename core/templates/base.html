@@ -33,7 +33,7 @@
                 {% if request.user.worker %}
                 <a href="{% url 'worker_profile' %}">Work Profile</a>
                 {% else %}
-                <a href="{% url 'create_worker' %}">Create your ad !</a>
+                <a href="{% url 'create_worker' %}">Work !</a>
                 {% endif %}
                 <!-- edit user or log out -->
                 <a href="{% url 'edit_profile' %}">Edit User</a>
