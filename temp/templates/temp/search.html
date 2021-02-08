@@ -51,7 +51,10 @@
         </div>
       </div>
       {% empty %}
-      <h3 class="card-text">No workers found by "{{ request.GET.q }}"</h3>
+      <div class="banner-text">
+        <img src="{% static 'images/search.png' %}">
+        <h3 class="card-text">No workers found by "{{ request.GET.q }}"</h3>
+      </div>
       {% endfor %}
     </div>
   </main>
