@@ -10,7 +10,7 @@ from django.urls import reverse
 
 def home(request):
     '''
-    all worker profiles are showing here
+    Worker profiles are showing here so
     users can search for Workers
     '''
     # if user is registered
