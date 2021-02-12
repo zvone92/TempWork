@@ -6,7 +6,7 @@ from django.db.models import Q
 from messaging.msg_util import new_messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
-
+from django.contrib import messages
 
 def home(request):
     '''
@@ -114,6 +114,7 @@ def create_worker(request):
         worker = form.save(commit=False)
         worker.user  = request.user
         worker.save()
+        messages.success(request, 'Profile succesfuly created !')
         return redirect('home')
 
     else:
@@ -129,6 +130,7 @@ def edit_worker_info(request):
     form = EditWorkerInfoForm(request.POST or None, request.FILES or None, instance=worker)
     if form.is_valid():
         form.save()
+        messages.success(request, 'Profile updated !')
         return redirect('worker_profile')
 
     else:

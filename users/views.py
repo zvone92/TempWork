@@ -6,6 +6,7 @@ from .forms import UserRegisterForm, ProfileEditForm, UserEditForm
 from django.contrib.auth.decorators import login_required
 from temp.models import Profile
 
+
 def register(request):
 
     if request.method == 'POST':
@@ -14,7 +15,7 @@ def register(request):
             new_user = form.save(commit=False)
             new_user.save()
             Profile.objects.create(user=new_user) # creating user profile
-            messages.success(request, 'Account created, you can now log in')
+            messages.success(request, 'You are registered !')
             return redirect('login')
 
     else:
@@ -29,6 +30,7 @@ def edit_profile(request):
     if profile_form.is_valid() and user_form.is_valid():
         profile_form.save()
         user_form.save()
+        messages.success(request, 'Succesfuly updated !')
         return redirect('home')
 
     else:

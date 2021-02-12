@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
 
-
 {% load crispy_forms_tags %}
 
 {% block content %}
 
-
-
-
 <div class="wrapper">
   <!-- edit user -->
-
+  {% if messages %}
+    {% for message in messages %}
+    <div class="info-msg">
+      <p>
+        <i>&#10004;</i> {{ message }}
+      </p>
+    </div>
+    {% endfor %}
+  {% endif %}
   <form class="login-form" method="post">
     {% csrf_token %}
       <legend>Login</legend>
@@ -23,6 +27,5 @@
       </div>
   </form>
 </div>
-
 
 {% endblock %}
