@@ -30,7 +30,7 @@ def edit_profile(request):
     if profile_form.is_valid() and user_form.is_valid():
         profile_form.save()
         user_form.save()
-        messages.success(request, 'Succesfuly updated !')
+        messages.success(request, 'Successfully updated !')
         return redirect('home')
 
     else:

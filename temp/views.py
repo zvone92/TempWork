@@ -114,7 +114,7 @@ def create_worker(request):
         worker = form.save(commit=False)
         worker.user  = request.user
         worker.save()
-        messages.success(request, 'Profile succesfuly created !')
+        messages.success(request, 'Profile created !')
         return redirect('home')
 
     else:
