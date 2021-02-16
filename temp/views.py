@@ -74,6 +74,7 @@ def worker_profile(request):
     if profile_img_form.is_valid() and cover_img_form.is_valid():
         profile_img_form.save()
         cover_img_form.save()
+        messages.success(request, 'Image updated!')
         return redirect('worker_profile')
 
     context = { 'worker': worker,
