@@ -3,10 +3,9 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <title>Home</title>
+  <title>TempWork</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <!-- New style for testing -->
   <link rel="stylesheet" href="{% static 'style.css' %}">
  </head>
   <body>
@@ -28,7 +27,6 @@
               {% else %}
               <img class="user-img" src="/media/images/default-avatar.png" alt="avatar-img">
               {% endif %}
-              <!-- TODO: DROPDOWN ITEMS -->
               <div class="dropdown-content">
                 {% if request.user.worker %}
                 <a href="{% url 'worker_profile' %}">Work Profile</a>
@@ -42,15 +40,6 @@
               <!-- END -->
             </div>
           </li>
-          {% else %}
-          <!-- LOG IN OR REGISTER-->
-          <li>
-            <a href="{% url 'login' %}">Log in</a>
-          </li>
-          <li>
-            <a href="{% url 'register' %}">Sign up</a>
-          </li>
-          {% endif %}
           <!-- Check for new messages  -->
           <li>
             <div class="notification" onclick="window.location='{% url 'conversation_list' %}';">
@@ -60,6 +49,16 @@
               {% endif %}
             </div>
           </li>
+          {% else %}
+          <!-- LOG IN OR REGISTER-->
+          <li>
+            <a href="{% url 'login' %}">Log in</a>
+          </li>
+          <li>
+            <a href="{% url 'register' %}">Sign up</a>
+          </li>
+          {% endif %}
+
           <!--
           <li><a href="my-profile.html"><i class="fa fa-user-circle"> My Profile</i></a></li>
           <li><a href="create-worker.html"><i class="fa fa-plus-square"></i> Work</a></li>
