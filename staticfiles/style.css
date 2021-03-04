@@ -972,6 +972,34 @@ textarea{
   color: #fcb100;
 }
 
+.socialaccount_providers{
+  padding: 0;
+  list-style-type: none;
+}
+
+.socialaccount_providers li{
+  display: inline;
+  padding: 0 10px; 
+}
+
+.socialaccount_providers li .google{
+  color: #fff;
+  background-color: #df4a32;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 6px 20px;
+  letter-spacing: 2px;
+}
+
+.socialaccount_providers li .facebook{
+  color: #fff;
+  background-color: #0d8af0;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 6px 20px;
+  letter-spacing: 2px;
+}
+
 /* last modified */
 .login-btn{
   margin: 10px;
