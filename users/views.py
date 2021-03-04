@@ -14,7 +14,7 @@ def register(request):
         if form.is_valid():
             new_user = form.save(commit=False)
             new_user.save()
-            Profile.objects.create(user=new_user) # creating user profile
+            # cut profile creating
             messages.success(request, 'You are registered !')
             return redirect('login')
 

@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django.urls import path, include
 from temp import views
@@ -11,8 +10,8 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('temp/', include('temp.urls')),
     path('users/', include('users.urls')),
-    path('messaging/', include('messaging.urls'))
-
+    path('messaging/', include('messaging.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
 
 
