@@ -10,7 +10,7 @@
   <form class="login-form" method="post">
     {% csrf_token %}
       <legend>Join</legend>
-      {{ form|crispy }}
+      {{ form.as_p }}
       <button class="login-btn" type="submit">Sign Up</button>
       <div class="">
         <small>
