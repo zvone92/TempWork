@@ -20,7 +20,8 @@ class WorkerCreateForm(forms.ModelForm):
         model = Worker
 
         widgets = {
-            'location': forms.Textarea(attrs={'placeholder': 'eg. Savska 17, Zagreb'}),
+            'location': forms.Textarea(attrs={'placeholder': 'npr. Savska 17, Zagreb'}),
+            'skill': forms.TextInput(attrs={'placeholder': 'npr. Fotograf'}),
         }
 
         fields = ['name', 'lastname', 'dob', 'skill', 'details', 'status', 'location', 'image', 'hourly_rate', 'phone']

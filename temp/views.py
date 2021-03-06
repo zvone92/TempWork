@@ -15,12 +15,12 @@ def home(request):
     '''
     # if user is registered
     if request.user.is_authenticated:
-        workers = Worker.objects.all().exclude(user=request.user).order_by('-pk')[0:9]
+        workers = Worker.objects.exclude(user=request.user).filter(status='published').order_by('-pk')[0:9]
         # checking for new messages, returns integer
         inbox = new_messages(request.user)
 
     else:
-        workers = Worker.objects.all().order_by('-pk')[0:9]
+        workers = Worker.objects.filter(status='published').order_by('-pk')[0:9]
         inbox = 0
 
     context = {
@@ -34,12 +34,12 @@ def home(request):
 def search(request):
     # if user is registered
     if request.user.is_authenticated:
-        workers = Worker.objects.all().exclude(user=request.user).order_by('-pk')[0:9]
+        workers = Worker.objects.exclude(user=request.user).filter(status='published').order_by('-pk')[0:9]
         # checking for new messages, returns integer
         inbox = new_messages(request.user)
 
     else:
-        workers = Worker.objects.all()[0:9]
+        workers = Worker.objects.filter(status='published').order_by('-pk')[0:9]
         inbox = 0
 
     query   = request.GET.get('q')
