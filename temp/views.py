@@ -30,7 +30,7 @@ def home(request):
     return render(request, 'temp/home.html', context)
 
 
-
+'''
 def search(request):
     # if user is registered
     if request.user.is_authenticated:
@@ -43,14 +43,57 @@ def search(request):
         inbox = 0
 
     query   = request.GET.get('q')
-    # if there is a search query, find by skill, details or name
+
     if query:
         workers  = Worker.objects.filter(
         Q(skill__icontains=query)|
         Q(details__icontains=query)|
-        Q(name__icontains=query))
+        Q(name__icontains=query),status='published')
 
 
+    context = {
+                'workers': workers,
+                'inbox': inbox,
+                'query': query
+    }
+
+    return render(request, 'temp/search.html', context)
+'''
+
+def search(request):
+    query   = request.GET.get('q')
+    inbox = 0
+    # user is registered
+    if request.user.is_authenticated:
+        inbox = new_messages(request.user) # check for new messages
+        if query:
+            ''' if there is a search query, find by skill, details or name
+                and show only published profiles. Exclude user.
+            '''
+            workers  = Worker.objects.exclude(user=request.user).filter(
+            Q(skill__icontains=query)|
+            Q(details__icontains=query)|
+            Q(name__icontains=query),status='published')
+
+        else:
+            # show default profiles
+            workers = Worker.objects.exclude(user=request.user).filter(status='published').order_by('-pk')[0:9]
+
+    # unregistered user
+    else:
+        if query:
+            ''' if there is a search query, find by skill, details or name
+                and show only published profiles
+            '''
+            workers  = Worker.objects.filter(
+            Q(skill__icontains=query)|
+            Q(details__icontains=query)|
+            Q(name__icontains=query),status='published')
+
+        else:
+            # show default profiles
+            workers = Worker.objects.filter(status='published').order_by('-pk')[0:9]
+    
     context = {
                 'workers': workers,
                 'inbox': inbox,
